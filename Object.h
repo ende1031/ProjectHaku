@@ -16,7 +16,13 @@ protected:
 	bool				m_bDraw;
 	float				m_deltaTime;
 
+	float				m_width;
+	float				m_height;
+
 	float				m_radius;
+
+	float				m_AniTimer;
+	int					m_AniNum;
 
 public:
 	Object();
@@ -26,7 +32,7 @@ public:
 	void	Update(float deltaTime);
 	void	Draw();
 
-	void	Animation(float *timer, int *aniNum, int width, int height, int rowNum, int lastNum, float delayTime);
+	void	Animation(int rowNum, int lastNum, float delayTime, float deltaTime);
 	void	FadeIn(unsigned int *alpha, float deltaTime);
 	void	Move(float x, float y, float deltaTime);
 

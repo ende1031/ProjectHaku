@@ -15,10 +15,16 @@ void Object::Start(Texture t1)
 	m_pSprite = Device::GetSprite();
 	m_pTexture = t1.GetTexture();
 
+	m_AniTimer = 0;
+	m_AniNum = 0;
+
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_rect = { 0, 0, (LONG)t1.GetWidth(), (LONG)t1.GetHeight() }; //텍스쳐의 크기를 자동으로 받아옴. 직접 수치 입력할 필요 없음.
 	m_vPos = D3DXVECTOR3(0, 0, 0);
+
+	m_width = m_rect.right;
+	m_height = m_rect.bottom;
 }
 
 void Object::Update(float deltaTime)
@@ -42,18 +48,20 @@ void Object::Move(float x, float y, float deltaTime)
 	m_vPos.y += y * deltaTime;
 }
 
-void Object::Animation(float *timer, int *aniNum, int width, int height, int rowNum, int lastNum, float delayTime)
+void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime)
 {
-	if (*timer > delayTime)
-	{
-		m_rect.left = width * (*aniNum % rowNum);
-		m_rect.top = height * (*aniNum / rowNum);
-		m_rect.right = width * (*aniNum % rowNum + 1);
-		m_rect.bottom = height * (*aniNum / rowNum + 1);
+	m_AniTimer += deltaTime;
 
-		(*aniNum)++;
-		*timer = 0;
-		*aniNum %= lastNum;
+	if (m_AniTimer > delayTime)
+	{
+		m_rect.left = m_width * (m_AniNum % rowNum);
+		m_rect.top = m_height * (m_AniNum / rowNum);
+		m_rect.right = m_width * (m_AniNum % rowNum + 1);
+		m_rect.bottom = m_height * (m_AniNum / rowNum + 1);
+
+		m_AniNum++;
+		m_AniTimer = 0;
+		m_AniNum %= lastNum;
 	}
 }
 

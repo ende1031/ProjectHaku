@@ -60,6 +60,9 @@
     <ClInclude Include="Object.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,6 +90,9 @@
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
