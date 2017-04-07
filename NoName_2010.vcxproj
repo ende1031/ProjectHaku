@@ -375,12 +375,29 @@
     <None Include="DXUT\Optional\directx.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NoName.cpp" />
+    <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Looper.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="TestStage.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="Looper.h" />
+    <ClInclude Include="MainMenu.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="TestStage.h" />
+    <ClInclude Include="Texture.h" />
     <ResourceCompile Include="NoName.rc" />
   </ItemGroup>
   <ItemGroup>
