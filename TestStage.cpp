@@ -32,11 +32,11 @@ void TestStage::Update(float deltaTime)
 	for (int i = 0; i < 15; i++)
 		m_Fire[i].Update(deltaTime);
 
-	if (KeyInput(VK_Z))
+	if (KeyInput(VK_A))
 	{
 		m_Player.InsertFire(1);
 	}
-	if (KeyInput(VK_X))
+	if (KeyInput(VK_S))
 	{
 		m_Player.RemoveFire(1);
 	}

@@ -77,9 +77,13 @@ void Player::Input()
 		if (m_vPos.y < ScreenSizeY - m_height)
 			m_vPos.y += 5;
 	}
-	if (KeyDown(VK_SPACE))
+	if (KeyDown(VK_Z))
 	{
 		Ataack();
+	}
+	if (KeyDown(VK_X))
+	{
+		AllAtaack();
 	}
 }
 
@@ -128,7 +132,7 @@ void Player::Ataack()
 {
 	if (m_AttackSpeedTimer > m_AttackSpeed)
 	{
-		for (int i = 0; i < m_FireCount; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (!m_bFireAttack[i])
 			{
@@ -136,6 +140,31 @@ void Player::Ataack()
 				m_AttackSpeedTimer = 0;
 				break;
 			}
+		}
+	}
+}
+
+void Player::AllAtaack()
+{
+	bool ready = true;
+	if (m_AttackSpeedTimer > m_AttackSpeed)
+	{
+		for (int i = 0; i < m_FireCount; i++)
+		{
+			if (m_bFireAttack[i] == true)
+			{
+				ready = false;
+				break;
+			}
+			
+		}
+		if (ready)
+		{
+			for (int i = 0; i < m_FireCount; i++)
+			{
+				m_bFireAttack[i] = true;
+			}
+			m_AttackSpeedTimer = 0;
 		}
 	}
 }

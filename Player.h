@@ -6,6 +6,7 @@ class Player : public Object
 private:
 	void Input();
 	void Ataack();
+	void AllAtaack();
 
 	void FireRotate(float deltaTime);
 	int m_FireCount;

@@ -47,9 +47,9 @@ void Fire::Start(Texture texture1, Texture texture2, Player* player, int fireNum
 	m_bHaveTarget = false;
 	m_MoveSpeed = 1500.f;
 	m_vMoveVector = D3DXVECTOR3(0, 0, 0);
-	m_AttackRange = 650.f;
+	m_AttackRange = 550.f;
 	m_DistanceToTaget = m_AttackRange;
-	m_TurnBack = true;
+	m_TurnBack = false;
 }
 
 void Fire::Update(float deltaTime)
@@ -115,6 +115,13 @@ void Fire::Update(float deltaTime)
 		else //È¸Àü
 		{
 			RotateCircle();
+		}
+	}
+	else
+	{
+		if (m_pPlayer->GetFireAttack(m_FireNum))
+		{
+			m_pPlayer->SetFireAttack(m_FireNum, false);
 		}
 	}
 }
