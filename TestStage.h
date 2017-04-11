@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Background.h"
 #include "Player.h"
+#include "Fire.h"
 
 class TestStage : public Scene
 {
@@ -22,4 +23,8 @@ private:
 
 	Player m_Player;
 	Texture m_tPlayer;
+
+	Fire m_Fire[15];
+	Texture m_tFire_Small;
+	Texture m_tFire_Big;
 };

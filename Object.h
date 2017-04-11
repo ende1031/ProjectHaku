@@ -13,7 +13,7 @@ protected:
 	D3DCOLOR			m_color;
 	unsigned int		m_alpha;
 
-	bool				m_bDraw;
+	bool				m_bActive;
 	float				m_deltaTime;
 
 	float				m_width;
@@ -37,13 +37,14 @@ public:
 	void	Move(float x, float y, float deltaTime);
 
 	//Getter
-	bool		GetLive() { return m_bDraw; };
-	D3DXVECTOR3	GetvPos() { return m_vPos; };
-	float		GetRadius() { return m_radius; };
+	bool		GetActive()	{ return m_bActive; };
+	D3DXVECTOR3	GetvPos()	{ return m_vPos; };
+	float		GetRadius()	{ return m_radius; };
+	D3DXVECTOR3 GetvCenterPos() { return D3DXVECTOR3(m_vPos.x + (m_width / 2), m_vPos.y + (m_height / 2), 0); };
 
 	//Setter
 	void	SetRect(RECT rect) { m_rect = rect; }
-	void	SetLive(bool live) { m_bDraw = live; };
+	void	SetActive(bool live) { m_bActive = live; };
 
 };
 

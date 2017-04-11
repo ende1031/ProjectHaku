@@ -3,7 +3,7 @@
 Object::Object()
 {
 	m_vPos = D3DXVECTOR3(0, 0, 0);
-	m_bDraw = true;
+	m_bActive = true;
 }
 
 Object::~Object()
@@ -34,7 +34,7 @@ void Object::Update(float deltaTime)
 
 void Object::Draw()
 {
-	if (m_bDraw)
+	if (m_bActive)
 	{
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 		m_pSprite->Draw(m_pTexture, &m_rect, NULL, &m_vPos, m_color);

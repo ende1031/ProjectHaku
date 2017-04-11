@@ -34,7 +34,7 @@ void BackGround::Update(float deltaTime)
 
 void BackGround::Draw()
 {
-	if (m_bDraw)
+	if (m_bActive)
 	{
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 		m_pSprite->Draw(m_pTexture, &m_rect, NULL, &m_vPos, m_color);

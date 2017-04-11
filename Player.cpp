@@ -18,24 +18,36 @@ void Player::Start(Texture texture)
 
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
-	m_rect = { 0, 0, 106, 82}; //106,82
-	m_vPos = D3DXVECTOR3(0, 0, 0);
+	m_rect = { 0, 0, 106, 82};
+	m_vPos = D3DXVECTOR3(150, 250, 0);
 
 	m_width = m_rect.right;
 	m_height = m_rect.bottom;
+
+	m_FireCount = 1;
+	m_FireRotateSpeed_Small = 200;
+	m_FireRotateSpeed_Big = 100;
+	m_FireAngle_Small = 0;
+	m_FireAngle_Big = 0;
+	for (int i = 0; i < 15; i++) m_bFireAttack[i] = false;
+	m_AttackSpeed = 0.1f;
+	m_AttackSpeedTimer = 0.f;
 }
 
 void Player::Update(float deltaTime)
 {
 	FadeIn(&m_alpha, deltaTime);
 	Animation(2, 4, 0.1f, deltaTime);
+	FireRotate(deltaTime);
+
+	m_AttackSpeedTimer += deltaTime;
 
 	Input();
 }
 
 void Player::Draw()
 {
-	if (m_bDraw)
+	if (m_bActive)
 	{
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 		m_pSprite->Draw(m_pTexture, &m_rect, NULL, &m_vPos, m_color);
@@ -64,5 +76,66 @@ void Player::Input()
 	{
 		if (m_vPos.y < ScreenSizeY - m_height)
 			m_vPos.y += 5;
+	}
+	if (KeyDown(VK_SPACE))
+	{
+		Ataack();
+	}
+}
+
+void Player::InsertFire(int Num)
+{
+	for (int i = 1; i <= Num; i++)
+	{
+		if (m_FireCount < 15)
+		{
+			m_FireCount += 1;
+		}
+		else
+			break;
+	}
+}
+
+void Player::RemoveFire(int Num)
+{
+	for (int i = 1; i <= Num; i++)
+	{
+		if (m_FireCount > 0)
+		{
+			m_FireCount -= 1;
+		}
+		else
+			break;
+	}
+}
+
+void Player::FireRotate(float deltaTime)
+{
+	m_FireAngle_Small += m_FireRotateSpeed_Small * deltaTime;
+	if (m_FireAngle_Small > 360.f)
+		m_FireAngle_Small -= 360.f;
+	if (m_FireAngle_Small < 0)
+		m_FireAngle_Small += 360.f;
+
+	m_FireAngle_Big += m_FireRotateSpeed_Big * deltaTime;
+	if (m_FireAngle_Big > 360.f)
+		m_FireAngle_Big -= 360.f;
+	if (m_FireAngle_Big < 0)
+		m_FireAngle_Big += 360.f;
+}
+
+void Player::Ataack()
+{
+	if (m_AttackSpeedTimer > m_AttackSpeed)
+	{
+		for (int i = 0; i < m_FireCount; i++)
+		{
+			if (!m_bFireAttack[i])
+			{
+				m_bFireAttack[i] = true;
+				m_AttackSpeedTimer = 0;
+				break;
+			}
+		}
 	}
 }
