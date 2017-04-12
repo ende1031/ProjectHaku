@@ -18,8 +18,8 @@ public:
 	void CreateMonster(); //몬스터 생성
 
 private:
-	BackGround m_BG;
-	Texture m_tBG;
+	BackGround m_BackGround[3]; //근경
+	Texture m_tBackGround[3];
 
 	Player m_Player;
 	Texture m_tPlayer;

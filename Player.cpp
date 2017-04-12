@@ -85,6 +85,14 @@ void Player::Input()
 	{
 		AllAtaack();
 	}
+	if (KeyInput(VK_A))
+	{
+		InsertFire(1);
+	}
+	if (KeyInput(VK_S))
+	{
+		RemoveFire(1);
+	}
 }
 
 void Player::InsertFire(int Num)
@@ -93,6 +101,7 @@ void Player::InsertFire(int Num)
 	{
 		if (m_FireCount < 15)
 		{
+			cout << "여우령 생성" << endl;
 			m_FireCount += 1;
 		}
 		else
@@ -106,6 +115,7 @@ void Player::RemoveFire(int Num)
 	{
 		if (m_FireCount > 0)
 		{
+			cout << "여우령 삭제" << endl;
 			m_FireCount -= 1;
 		}
 		else
@@ -136,6 +146,7 @@ void Player::Ataack()
 		{
 			if (!m_bFireAttack[i])
 			{
+				cout << "여우령 공격" << endl;
 				m_bFireAttack[i] = true;
 				m_AttackSpeedTimer = 0;
 				break;
@@ -156,7 +167,6 @@ void Player::AllAtaack()
 				ready = false;
 				break;
 			}
-			
 		}
 		if (ready)
 		{
@@ -164,6 +174,7 @@ void Player::AllAtaack()
 			{
 				m_bFireAttack[i] = true;
 			}
+			cout << "여우령 전체 공격" << endl;
 			m_AttackSpeedTimer = 0;
 		}
 	}

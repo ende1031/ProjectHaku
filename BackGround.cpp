@@ -8,7 +8,7 @@ BackGround::~BackGround()
 {
 }
 
-void BackGround::Start(Texture texture)
+void BackGround::Start(Texture texture, float speed)
 {
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
@@ -18,13 +18,15 @@ void BackGround::Start(Texture texture)
 	m_rect = { 0, 0, texture.GetWidth(), texture.GetHeight() };
 	m_vPos = D3DXVECTOR3(0, 0, 0);
 	m_vPos2 = D3DXVECTOR3((float)m_rect.right, 0, 0);
+
+	m_MoveSpeed = speed;
 }
 
 void BackGround::Update(float deltaTime)
 {
 	FadeIn(&m_alpha, deltaTime);
 
-	Move(-150, 0, deltaTime);
+	Move(-m_MoveSpeed, 0, deltaTime);
 	if (m_vPos2.x <= 0)
 	{
 		m_vPos.x = m_vPos2.x;

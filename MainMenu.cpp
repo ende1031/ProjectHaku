@@ -2,6 +2,7 @@
 
 MainMenu::MainMenu()
 {
+	cout << "메인메뉴가 로드되었습니다." << endl;
 }
 
 MainMenu::~MainMenu()

@@ -45,6 +45,7 @@ INT WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, INT) // 프로그램 진
 	// Direct3D초기화
 	if (SUCCEEDED(Device::GetInstance()->Start(hWnd, ScreenSizeX, ScreenSizeY)))
 	{
+		cout << "성공적으로 게임을 실행했습니다." << endl;
 		// 윈도우 출력
 		ShowWindow(hWnd, SW_SHOWDEFAULT);
 		UpdateWindow(hWnd);

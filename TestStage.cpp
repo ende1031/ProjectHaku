@@ -2,6 +2,7 @@
 
 TestStage::TestStage()
 {
+	cout << "테스트용 씬이 로드되었습니다." << endl;
 }
 
 TestStage::~TestStage()
@@ -13,8 +14,12 @@ void TestStage::Start()
 	m_bChangeScene = false;
 	m_SceneTime = 0;
 
-	m_tBG.Start(L"Image/Background2.png");//텍스쳐 초기화
-	m_BG.Start(m_tBG);//오브젝트 초기화
+	m_tBackGround[0].Start(L"Image/Stage01/BackGround01.png");
+	m_tBackGround[1].Start(L"Image/Stage01/BackGround02.png");
+	m_tBackGround[2].Start(L"Image/Stage01/BackGround03.png");
+	m_BackGround[0].Start(m_tBackGround[0], 400.f);
+	m_BackGround[1].Start(m_tBackGround[1], 300.f);
+	m_BackGround[2].Start(m_tBackGround[2], 200.f);
 
 	m_tPlayer.Start(L"Image/Player.png");
 	m_Player.Start(m_tPlayer);
@@ -27,19 +32,11 @@ void TestStage::Start()
 
 void TestStage::Update(float deltaTime)
 {
-	m_BG.Update(deltaTime);
+	for(int i = 0; i < 3; i++)
+		m_BackGround[i].Update(deltaTime);
 	m_Player.Update(deltaTime);
 	for (int i = 0; i < 15; i++)
 		m_Fire[i].Update(deltaTime);
-
-	if (KeyInput(VK_A))
-	{
-		m_Player.InsertFire(1);
-	}
-	if (KeyInput(VK_S))
-	{
-		m_Player.RemoveFire(1);
-	}
 
 	if (KeyInput(VK_ESCAPE))
 	{
@@ -49,9 +46,10 @@ void TestStage::Update(float deltaTime)
 
 void TestStage::Draw()
 {
-	m_BG.Draw();
+	for(int i = 3; i >= 0; i--) //원경부터 그리기
+		m_BackGround[i].Draw();
 	m_Player.Draw();
-	for (int i = 0; i < 15; i++)
+	for (int i = 14; i >= 0; i--)
 		m_Fire[i].Draw();
 }
 
