@@ -386,6 +386,11 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="TestStage.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TitleBackWhite.cpp" />
+    <ClCompile Include="TitleHaku.cpp" />
+    <ClCompile Include="TitleLogo.cpp" />
+    <ClCompile Include="TitleMenu.cpp" />
+    <ClCompile Include="TitleMenuArrow.cpp" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
@@ -402,6 +407,11 @@
     <CLInclude Include="resource.h" />
     <ClInclude Include="TestStage.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TitleBackWhite.h" />
+    <ClInclude Include="TitleHaku.h" />
+    <ClInclude Include="TitleLogo.h" />
+    <ClInclude Include="TitleMenu.h" />
+    <ClInclude Include="TitleMenuArrow.h" />
     <ResourceCompile Include="NoName.rc" />
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,9 @@
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{2947ddfe-f94f-4f37-857d-eeb7218c837e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Object\Title">
+      <UniqueIdentifier>{19512f66-4d59-4879-a5a3-4c834bf451e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -66,6 +69,21 @@
     <ClInclude Include="Fire.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="TitleBackWhite.h">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleHaku.h">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMenu.h">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMenuArrow.h">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -100,6 +118,21 @@
     </ClCompile>
     <ClCompile Include="Fire.cpp">
       <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackWhite.cpp">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleHaku.cpp">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMenu.cpp">
+      <Filter>Source Files\Object\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMenuArrow.cpp">
+      <Filter>Source Files\Object\Title</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
