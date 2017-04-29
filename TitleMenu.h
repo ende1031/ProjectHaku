@@ -8,7 +8,7 @@ public:
 	~TitleMenu();
 
 	void	Update(float deltaTime);
-	void	Start(Texture tecture);
+	void	Start(Texture texture);
 
 	int		GetMenuNum() { return m_iMenuNum; }
 	void 	SetMenuNum(int num) { m_iMenuNum = num; }

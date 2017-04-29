@@ -66,7 +66,6 @@ INT WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, INT) // 프로그램 진
 				first_time = GetTickCount();
 
 				Looper.Update(deltaTime);
-				Looper.Render();
 
 				deltaTime = (float)(GetTickCount() - first_time) / (float)1000;
 			}

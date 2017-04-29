@@ -11,6 +11,6 @@ public:
 	TitleMenuArrow();
 	~TitleMenuArrow();
 
-	void	Start(Texture tecture);
+	void	Start(Texture texture);
 	void	Update(float deltaTime);
 };

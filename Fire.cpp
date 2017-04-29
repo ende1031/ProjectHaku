@@ -20,16 +20,18 @@ void Fire::Start(Texture texture1, Texture texture2, Player* player, int fireNum
 	if (m_FireNum <= 5) //작은 여우령
 	{
 		m_CircleRadius = 70.0f;
-		m_RotateAngle = 72 * fireNum;
+		m_RotateAngle = 72.0f * fireNum;
 		m_pTexture = texture1.GetTexture();
 		m_rect = { 0, 0, 50, 50 };
+		m_radius = 15;
 	}
 	else //큰 여우령
 	{
 		m_CircleRadius = 130.0f;
-		m_RotateAngle = 36 * (fireNum - 5);
+		m_RotateAngle = 36.0f * (fireNum - 5);
 		m_pTexture = texture2.GetTexture();
 		m_rect = { 0, 0, 74, 74 };
+		m_radius = 25;
 	}
 
 	m_AniTimer = 0;
@@ -38,8 +40,8 @@ void Fire::Start(Texture texture1, Texture texture2, Player* player, int fireNum
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_vPos = D3DXVECTOR3(m_vPlayerPos.x, m_vPlayerPos.y, 0);
-	m_width = m_rect.right;
-	m_height = m_rect.bottom;
+	m_width = (float)m_rect.right;
+	m_height = (float)m_rect.bottom;
 
 	m_vInCirclePos = m_vPos;
 
@@ -138,15 +140,15 @@ void Fire::SetInCirclePos()
 	if (m_FireNum <= 5) //작은 여우령
 	{
 		if (m_pPlayer->GetFireCount() <= 5)
-			m_RotateAngle = 360 / m_pPlayer->GetFireCount() * (m_FireNum - 1);
+			m_RotateAngle = 360.0f / m_pPlayer->GetFireCount() * (m_FireNum - 1);
 		else
-			m_RotateAngle = 360 / 5 * m_FireNum;
+			m_RotateAngle = 360.0f / 5 * m_FireNum;
 		m_vInCirclePos.x = cos((m_RotateAngle + m_pPlayer->GetFireAngle_Small()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.x - (m_width / 2);
 		m_vInCirclePos.y = sin((m_RotateAngle + m_pPlayer->GetFireAngle_Small()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.y - (m_height / 2);
 	}
 	else if (m_FireNum > 5)//큰 여우령
 	{
-		m_RotateAngle = 360 / (m_pPlayer->GetFireCount() - 5) * (m_FireNum - 6);
+		m_RotateAngle = 360.0f / (m_pPlayer->GetFireCount() - 5) * (m_FireNum - 6);
 		m_vInCirclePos.x = sin((m_RotateAngle + m_pPlayer->GetFireAngle_Big()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.x - (m_width / 2);
 		m_vInCirclePos.y = cos((m_RotateAngle + m_pPlayer->GetFireAngle_Big()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.y - (m_height / 2);
 	}

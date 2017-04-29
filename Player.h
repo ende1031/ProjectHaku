@@ -4,7 +4,7 @@
 class Player : public Object
 {
 private:
-	void Input();
+	void Input(float deltaTime);
 	void Ataack();
 	void AllAtaack();
 
@@ -19,6 +19,8 @@ private:
 	float m_AttackSpeed;
 	float m_AttackSpeedTimer;
 
+	float m_ColTimer;
+
 public:
 	Player();
 	~Player();
@@ -29,6 +31,8 @@ public:
 
 	void InsertFire(int Num);
 	void RemoveFire(int Num);
+
+	void ColMonster();
 
 	D3DXVECTOR3	GetvCenterPos()		{ return D3DXVECTOR3(m_vPos.x + 65.f, m_vPos.y + 45.f, 0); };
 	int		GetFireCount()			{ return m_FireCount; };

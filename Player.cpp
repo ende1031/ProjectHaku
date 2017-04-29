@@ -10,19 +10,25 @@ Player::~Player()
 
 void Player::Start(Texture texture)
 {
+	m_bActive = true;
+
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
 
+	m_ColTimer = 0;
+
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_rect = { 0, 0, 106, 82};
 	m_vPos = D3DXVECTOR3(150, 250, 0);
 
-	m_width = m_rect.right;
-	m_height = m_rect.bottom;
+	m_width = (float)m_rect.right;
+	m_height = (float)m_rect.bottom;
+
+	m_radius = 40;
 
 	m_FireCount = 1;
 	m_FireRotateSpeed_Small = 200;
@@ -41,8 +47,9 @@ void Player::Update(float deltaTime)
 	FireRotate(deltaTime);
 
 	m_AttackSpeedTimer += deltaTime;
+	m_ColTimer += deltaTime;
 
-	Input();
+	Input(deltaTime);
 }
 
 void Player::Draw()
@@ -55,27 +62,27 @@ void Player::Draw()
 	}
 }
 
-void Player::Input()
+void Player::Input(float deltaTime)
 {
 	if (KeyDown(VK_LEFT))
 	{
 		if (m_vPos.x > -40)
-			m_vPos.x -= 5;
+			Move(-300, 0, deltaTime);
 	}
 	if (KeyDown(VK_RIGHT))
 	{
 		if (m_vPos.x < ScreenSizeX - m_width)
-			m_vPos.x += 5;
+			Move(300, 0, deltaTime);
 	}
 	if (KeyDown(VK_UP))
 	{
 		if (m_vPos.y > 0)
-			m_vPos.y -= 5;
+			Move(0, -300, deltaTime);
 	}
 	if (KeyDown(VK_DOWN))
 	{
 		if (m_vPos.y < ScreenSizeY - m_height)
-			m_vPos.y += 5;
+			Move(0, 300, deltaTime);
 	}
 	if (KeyDown(VK_Z))
 	{
@@ -177,5 +184,15 @@ void Player::AllAtaack()
 			cout << "여우령 전체 공격" << endl;
 			m_AttackSpeedTimer = 0;
 		}
+	}
+}
+
+void Player::ColMonster()
+{
+	if (m_ColTimer > 0.2f)
+	{
+		cout << "플레이어 피격" << endl;
+		RemoveFire(1);
+		m_ColTimer = 0;
 	}
 }

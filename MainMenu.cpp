@@ -51,8 +51,13 @@ void MainMenu::Update(float deltaTime)
 	{
 		switch (m_Menu.GetMenuNum())
 		{
-		case 0:
+		case 0: //게임 시작
 			ChangeScene(sTestStage);
+			break;
+		case 1: //게임 종료
+			PostQuitMessage(0);
+			break;
+		case 2: //조작 방법
 			break;
 		}
 	}

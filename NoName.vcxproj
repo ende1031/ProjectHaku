@@ -376,7 +376,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -384,7 +386,7 @@
     <ClCompile Include="Looper.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="TestStage.cpp" />
+    <ClCompile Include="Stage01.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleBackWhite.cpp" />
     <ClCompile Include="TitleHaku.cpp" />
@@ -393,10 +395,13 @@
     <ClCompile Include="TitleMenuArrow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="스테이지 구성.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Stage.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
@@ -405,7 +410,7 @@
     <ClInclude Include="Looper.h" />
     <ClInclude Include="MainMenu.h" />
     <CLInclude Include="resource.h" />
-    <ClInclude Include="TestStage.h" />
+    <ClInclude Include="Stage01.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleBackWhite.h" />
     <ClInclude Include="TitleHaku.h" />

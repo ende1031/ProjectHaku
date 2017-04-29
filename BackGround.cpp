@@ -2,6 +2,7 @@
 
 BackGround::BackGround()
 {
+
 }
 
 BackGround::~BackGround()
@@ -10,6 +11,8 @@ BackGround::~BackGround()
 
 void BackGround::Start(Texture texture, float speed)
 {
+	m_bActive = true;
+
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
 
@@ -41,7 +44,7 @@ void BackGround::Draw()
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 		m_pSprite->Draw(m_pTexture, &m_rect, NULL, &m_vPos, m_color);
 		m_pSprite->End();
-
+		
 		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 		m_pSprite->Draw(m_pTexture, &m_rect, NULL, &m_vPos2, m_color);
 		m_pSprite->End();

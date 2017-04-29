@@ -11,7 +11,7 @@ public:
 	TitleBackWhite();
 	~TitleBackWhite();
 
-	void	Start(Texture tecture);
+	void	Start(Texture texture);
 	void	Update(float deltaTime);
 };
 

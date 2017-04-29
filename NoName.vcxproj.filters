@@ -48,9 +48,6 @@
     <ClInclude Include="Texture.h">
       <Filter>Source Files\Main</Filter>
     </ClInclude>
-    <ClInclude Include="TestStage.h">
-      <Filter>Source Files\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
@@ -84,6 +81,15 @@
     <ClInclude Include="TitleMenuArrow.h">
       <Filter>Source Files\Object\Title</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage01.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -97,9 +103,6 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="TestStage.cpp">
-      <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\Scene</Filter>
@@ -134,5 +137,17 @@
     <ClCompile Include="TitleMenuArrow.cpp">
       <Filter>Source Files\Object\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage01.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="스테이지 구성.txt" />
   </ItemGroup>
 </Project>

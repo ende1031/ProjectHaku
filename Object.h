@@ -28,7 +28,7 @@ public:
 	Object();
 	virtual ~Object();
 
-	void	Start(Texture tecture);
+	void	Start(Texture texture);
 	void	Update(float deltaTime);
 	void	Draw();
 
@@ -47,4 +47,3 @@ public:
 	void	SetActive(bool live) { m_bActive = live; };
 
 };
-

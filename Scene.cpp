@@ -9,21 +9,6 @@ Scene::~Scene()
 	SAFE_DELETE_ARRAY(m_Mobdata);
 }
 
-void Scene::Start()
-{
-
-}
-
-void Scene::Update(float deltaTime)
-{
-
-}
-
-void Scene::Draw()
-{
-
-}
-
 void Scene::ChangeScene(int next)
 {
 	m_bChangeScene = true;

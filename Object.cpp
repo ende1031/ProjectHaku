@@ -3,28 +3,29 @@
 Object::Object()
 {
 	m_vPos = D3DXVECTOR3(0, 0, 0);
-	m_bActive = true;
 }
 
 Object::~Object()
 {
 }
 
-void Object::Start(Texture tecture)
+void Object::Start(Texture texture)
 {
+	m_bActive = true;
+
 	m_pSprite = Device::GetSprite();
-	m_pTexture = tecture.GetTexture();
+	m_pTexture = texture.GetTexture();
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
 
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
-	m_rect = { 0, 0, (LONG)tecture.GetWidth(), (LONG)tecture.GetHeight() };
+	m_rect = { 0, 0, (LONG)texture.GetWidth(), (LONG)texture.GetHeight() };
 	m_vPos = D3DXVECTOR3(0, 0, 0);
 
-	m_width = m_rect.right;
-	m_height = m_rect.bottom;
+	m_width = (float)m_rect.right;
+	m_height = (float)m_rect.bottom;
 }
 
 void Object::Update(float deltaTime)
@@ -46,6 +47,25 @@ void Object::Move(float x, float y, float deltaTime)
 {
 	m_vPos.x += x * deltaTime;
 	m_vPos.y += y * deltaTime;
+
+	if (m_vPos.x >= 0)
+	{
+		m_vPos.x = (int)(m_vPos.x + 0.5);
+	}
+	else
+	{
+		m_vPos.x = (int)(m_vPos.x - 0.5);
+	}
+
+	if (m_vPos.y >= 0)
+	{
+		m_vPos.y = (int)(m_vPos.y + 0.5);
+	}
+	else
+	{
+		m_vPos.y = (int)(m_vPos.y - 0.5);
+	}
+
 }
 
 void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime)
@@ -54,10 +74,10 @@ void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime
 
 	if (m_AniTimer > delayTime)
 	{
-		m_rect.left = m_width * (m_AniNum % rowNum);
-		m_rect.top = m_height * (m_AniNum / rowNum);
-		m_rect.right = m_width * (m_AniNum % rowNum + 1);
-		m_rect.bottom = m_height * (m_AniNum / rowNum + 1);
+		m_rect.left = (LONG)m_width * (m_AniNum % rowNum);
+		m_rect.top = (LONG)m_height * (m_AniNum / rowNum);
+		m_rect.right = (LONG)m_width * (m_AniNum % rowNum + 1);
+		m_rect.bottom = (LONG)m_height * (m_AniNum / rowNum + 1);
 
 		m_AniNum++;
 		m_AniTimer = 0;
@@ -68,7 +88,7 @@ void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime
 void Object::FadeIn(unsigned int *alpha, float deltaTime)
 {
 	if (*alpha < 255)
-		(*alpha) += 700 * deltaTime;
+		(*alpha) += (unsigned int)700 * deltaTime;
 
 	if (*alpha >= 255)
 		*alpha = 255;

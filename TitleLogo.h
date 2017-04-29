@@ -8,6 +8,6 @@ public:
 	~TitleLogo();
 
 	void	Update(float deltaTime);
-	void	Start(Texture tecture);
+	void	Start(Texture texture);
 };
 

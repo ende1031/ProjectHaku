@@ -1,5 +1,6 @@
 #pragma once
 
+#include <list>
 #include "Device.h"
 #include "Texture.h"
 #include <fstream> //¿‘√‚∑¬
@@ -26,9 +27,9 @@ public:
 	Scene();
 	~Scene();
 
-	virtual void Start();
-	virtual void Update(float deltaTime);
-	virtual void Draw();
+	virtual void Start() = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Draw() = 0;
 
 	void ChangeScene(int next);
 

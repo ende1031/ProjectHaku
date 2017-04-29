@@ -25,6 +25,7 @@ void Looper::Update(float deltaTime)
 	{
 		SetScene(m_pScene->GetNextScene());
 	}
+	Render();
 }
 
 void Looper::Render()
@@ -57,7 +58,7 @@ void Looper::SetScene(int Scene)
 		m_pScene = new MainMenu;
 		break;
 	case sTestStage:
-		m_pScene = new TestStage;
+		m_pScene = new Stage01;
 		
 		break;
 	case sStage1:
