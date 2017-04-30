@@ -8,9 +8,11 @@ Player::~Player()
 {
 }
 
-void Player::Start(Texture texture)
+void Player::Start(Texture texture, Sound* sound)
 {
 	m_bActive = true;
+
+	m_pSound = sound;
 
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();

@@ -8,7 +8,7 @@ Fire::~Fire()
 {
 }
 
-void Fire::Start(Texture texture1, Texture texture2, Player* player, int fireNum)
+void Fire::Start(Texture texture1, Texture texture2, Sound* sound, Player* player, int fireNum)
 {
 	m_pSprite = Device::GetSprite();
 

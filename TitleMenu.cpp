@@ -8,7 +8,7 @@ TitleMenu::~TitleMenu()
 {
 }
 
-void TitleMenu::Start(Texture texture)
+void TitleMenu::Start(Texture texture, Sound* sound)
 {
 	m_bActive = true;
 

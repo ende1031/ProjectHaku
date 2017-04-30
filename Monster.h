@@ -18,10 +18,10 @@ public:
 class Monster : public Object
 {
 public:
-	Monster(Texture texture, MonsterData data);
+	Monster(Texture texture, Sound* sound, MonsterData data);
 	~Monster();
 
-	void Start(Texture texture, MonsterData data);
+	void Start(Texture texture, Sound* sound, MonsterData data);
 	void Update(float deltaTime);
 	int GetHP() { return m_HP; }
 

@@ -9,10 +9,13 @@ MainMenu::~MainMenu()
 {
 }
 
-void MainMenu::Start()
+void MainMenu::Start(Sound* sound)
 {
 	m_bChangeScene = false;
 	m_SceneTime = 0;
+
+	m_pSound = sound;
+	m_pSound->Stop();
 
 	//텍스쳐 초기화
 	m_tBack.Start(L"Image/Title/Back.png");
@@ -30,9 +33,11 @@ void MainMenu::Start()
 	m_Background.Start(m_tBackground);
 	m_Logo.Start(m_tLogo);
 	m_Haku.Start(m_tHaku);
-	m_Menu.Start(m_tMenu);
+	m_Menu.Start(m_tMenu, m_pSound);
 	m_Arrow.Start(m_tArrow);
 	m_Light.Start(m_tLight);
+
+	m_pSound->PlayBGM("Sound/Title.mp3");
 }
 
 void MainMenu::Update(float deltaTime)

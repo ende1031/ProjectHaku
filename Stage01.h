@@ -7,7 +7,7 @@ public:
 	Stage01();
 	~Stage01();
 
-	void Start();
+	void Start(Sound* sound);
 	void Update(float deltaTime);
 	void Draw();
 

@@ -1,8 +1,8 @@
 #include "Monster.h"
 
-Monster::Monster(Texture texture, MonsterData data)
+Monster::Monster(Texture texture, Sound* sound, MonsterData data)
 {
-	Start(texture, data);
+	Start(texture, sound, data);
 	cout << data.pattern << "패턴 몬스터 생성" << endl;
 }
 
@@ -10,7 +10,7 @@ Monster::~Monster()
 {
 }
 
-void Monster::Start(Texture texture, MonsterData data)
+void Monster::Start(Texture texture, Sound* sound, MonsterData data)
 {
 	m_bActive = true;
 	m_MonsterData = data;

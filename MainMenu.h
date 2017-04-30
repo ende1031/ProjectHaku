@@ -39,7 +39,7 @@ public:
 	MainMenu();
 	~MainMenu();
 
-	void Start();
+	void Start(Sound* sound);
 	void Update(float deltaTime);
 	void Draw();
 };

@@ -7,7 +7,7 @@ public:
 	Fire();
 	~Fire();
 
-	void Start(Texture texture1, Texture texture2, Player* player, int fireNum);
+	void Start(Texture texture1, Texture texture2, Sound* sound, Player* player, int fireNum);
 	void Update(float deltaTime);
 
 private:

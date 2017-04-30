@@ -25,7 +25,7 @@ public:
 	Player();
 	~Player();
 
-	void Start(Texture texture);
+	void Start(Texture texture, Sound* sound);
 	void Update(float deltaTime);
 	void Draw();
 

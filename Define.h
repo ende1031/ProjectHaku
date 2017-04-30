@@ -6,6 +6,7 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <iostream>
+#include "Sound.h"
 
 //Direct3D Library file
 #pragma comment (lib, "d3d9.lib")

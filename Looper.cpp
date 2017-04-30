@@ -11,8 +11,9 @@ Looper::~Looper()
 
 void Looper::Start()
 {
-	//게임을 처음 시작하면 메인메뉴 초기화
-	SetScene(sMainMenu);
+	m_Sound.Start(); //사운드엔진 초기화
+
+	SetScene(sMainMenu);//게임을 처음 시작하면 메인메뉴 초기화
 }
 
 void Looper::Update(float deltaTime)
@@ -68,5 +69,5 @@ void Looper::SetScene(int Scene)
 		//
 		break;
 	}
-	m_pScene->Start();
+	m_pScene->Start(&m_Sound);
 }

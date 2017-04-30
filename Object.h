@@ -5,6 +5,8 @@
 class Object
 {
 protected:
+	Sound*				m_pSound; //사운드엔진 포인터. Looper에 있음.
+
 	LPDIRECT3DTEXTURE9	m_pTexture;
 	LPD3DXSPRITE		m_pSprite;
 
@@ -29,6 +31,7 @@ public:
 	virtual ~Object();
 
 	void	Start(Texture texture);
+	void	Start(Texture texture, Sound* sound);
 	void	Update(float deltaTime);
 	void	Draw();
 

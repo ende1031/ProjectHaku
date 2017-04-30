@@ -9,10 +9,14 @@ Stage01::~Stage01()
 {
 }
 
-void Stage01::Start()
+void Stage01::Start(Sound* sound)
 {
 	m_bChangeScene = false;
 	m_SceneTime = 0;
+
+	m_pSound = sound;
+	m_pSound->Stop();
+	m_pSound->PlayBGM("Sound/Forest.mp3");
 
 	m_tBackGround01.Start(L"Image/Stage01/BackGround01.png");
 	m_tBackGround02.Start(L"Image/Stage01/BackGround02.png");
@@ -23,12 +27,12 @@ void Stage01::Start()
 	m_BackGround03.Start(m_tBackGround03, 150.f);
 
 	m_tPlayer.Start(L"Image/Player.png");
-	m_Player.Start(m_tPlayer);
+	m_Player.Start(m_tPlayer, m_pSound);
 
 	m_tFire_Small.Start(L"Image/Fire_Small.png");
 	m_tFire_Big.Start(L"Image/Fire_Big.png");
 	for (int i = 1; i <= 15; i++)
-		m_Fire[i - 1].Start(m_tFire_Small, m_tFire_Big, &m_Player, i);
+		m_Fire[i - 1].Start(m_tFire_Small, m_tFire_Big, m_pSound, &m_Player, i);
 
 	m_tMonster01.Start(L"Image/Stage01/Monster01.png");
 	m_tMonster02.Start(L"Image/Stage01/Monster02.png");
@@ -54,11 +58,11 @@ void Stage01::Update(float deltaTime)
 	{
 		//pattern, radius, rectRight, rectBottom, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
 		MonsterData temp = { 0, 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster01, temp));
+		AddMonster(new Monster(m_tMonster01, m_pSound, temp));
 		temp = { 1, 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster02, temp));
+		AddMonster(new Monster(m_tMonster02, m_pSound, temp));
 		temp = { 2, 40.0f, 97.0f, 93.0f, 6, 6, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster03, temp));
+		AddMonster(new Monster(m_tMonster03, m_pSound, temp));
 		m_SceneTime = 0;
 	}
 

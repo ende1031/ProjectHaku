@@ -15,6 +15,8 @@ public:
 	void Update(float deltaTime);
 	void Render();
 
+	Sound m_Sound;
+
 	//Setter
 	void SetScene(int Scene);
 
@@ -22,11 +24,6 @@ public:
 	int GetScene() { return m_iScene; };
 
 private:
-	/*
-	MainMenu m_MainMenu;
-	TestStage m_TestStage;
-	*/
-
 	Scene* m_pScene;
 
 	int m_iScene;
