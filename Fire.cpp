@@ -11,7 +11,9 @@ Fire::~Fire()
 void Fire::Start(Texture texture1, Texture texture2, Sound* sound, Player* player, int fireNum)
 {
 	m_pSprite = Device::GetSprite();
+	m_pSound = sound;
 
+	m_bCanCol = true;
 	m_bActive = false;
 	m_pPlayer = player;
 	m_FireNum = fireNum;
@@ -23,7 +25,7 @@ void Fire::Start(Texture texture1, Texture texture2, Sound* sound, Player* playe
 		m_RotateAngle = 72.0f * fireNum;
 		m_pTexture = texture1.GetTexture();
 		m_rect = { 0, 0, 50, 50 };
-		m_radius = 15;
+		m_radius = 22;
 	}
 	else //큰 여우령
 	{
@@ -31,11 +33,12 @@ void Fire::Start(Texture texture1, Texture texture2, Sound* sound, Player* playe
 		m_RotateAngle = 36.0f * (fireNum - 5);
 		m_pTexture = texture2.GetTexture();
 		m_rect = { 0, 0, 74, 74 };
-		m_radius = 25;
+		m_radius = 35;
 	}
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
+	m_ColTimer = 0;
 
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
@@ -56,10 +59,11 @@ void Fire::Start(Texture texture1, Texture texture2, Sound* sound, Player* playe
 
 void Fire::Update(float deltaTime)
 {
+	m_ColTimer += deltaTime;
+
 	FadeIn(&m_alpha, deltaTime);
 	Animation(3, 6, 0.1f, deltaTime); // int rowNum, int lastNum, float delayTime, float deltaTime
 
-	
 	if (m_pPlayer->GetFireCount() >= m_FireNum)
 	{
 		m_bActive = true;
@@ -74,13 +78,26 @@ void Fire::Update(float deltaTime)
 	
 	if (m_bActive)
 	{
+		//위성모드에선 0.5초 간격으로 공격
+		if (m_ColTimer > 0.5f)
+		{
+			m_bCanCol = true;
+		}
+
 		//발사
 		if (m_pPlayer->GetFireAttack(m_FireNum))
 		{
+			//발사시엔 더 짧은 간격
+			if (m_ColTimer > 0.1f)
+			{
+				m_bCanCol = true;
+			}
+
 			if (!m_TurnBack) //발사
 			{
 				if (!m_bHaveTarget)
 				{
+					m_bCanCol = true;
 					m_vTargetPos = D3DXVECTOR3(m_vPlayerPos.x + m_AttackRange, m_vPlayerPos.y, 0);
 					m_bHaveTarget = true;
 					m_TurnBack = false;
@@ -95,6 +112,7 @@ void Fire::Update(float deltaTime)
 				{
 					m_bHaveTarget = false;
 					m_TurnBack = true;
+					m_bCanCol = true;
 				}
 			}
 			else if (m_TurnBack) //돌아옴
@@ -151,5 +169,14 @@ void Fire::SetInCirclePos()
 		m_RotateAngle = 360.0f / (m_pPlayer->GetFireCount() - 5) * (m_FireNum - 6);
 		m_vInCirclePos.x = sin((m_RotateAngle + m_pPlayer->GetFireAngle_Big()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.x - (m_width / 2);
 		m_vInCirclePos.y = cos((m_RotateAngle + m_pPlayer->GetFireAngle_Big()) * (D3DX_PI / 180)) * m_CircleRadius + m_vPlayerPos.y - (m_height / 2);
+	}
+}
+
+void Fire::ColMonster()
+{
+	if (m_bCanCol)
+	{
+		m_bCanCol = false;
+		m_ColTimer = 0;
 	}
 }

@@ -7,6 +7,7 @@ Stage::Stage()
 Stage::~Stage()
 {
 	SAFE_DELETE_ARRAY(m_MonsterFileData);
+	SAFE_DELETE(m_pBoss);
 }
 
 void Stage::Collision()
@@ -22,7 +23,12 @@ void Stage::Collision()
 				if (distance < (*it)->GetRadius() + m_Fire[i].GetRadius())
 				{
 					//충돌
-					(*it)->ColFire();
+					if (m_Fire[i].GetCanCol())
+					{
+						AddEffect(new Effect(m_tEffect, m_pSound, m_Fire[i].GetvCenterPos()));
+						(*it)->ColFire();
+						m_Fire[i].ColMonster();
+					}
 				}
 			}
 		}
@@ -35,11 +41,35 @@ void Stage::Collision()
 			m_Player.ColMonster();
 		}
 	}
+
+	//보스 - 여우령 충돌
+	for (int i = 0; i < 15; i++)
+	{
+		if (m_Fire[i].GetActive() && m_pBoss->GetActive())
+		{
+			float distance = D3DXVec3Length(&(m_pBoss->GetvCenterPos() - m_Fire[i].GetvCenterPos()));
+			if (distance < m_pBoss->GetRadius() + m_Fire[i].GetRadius())
+			{
+				//충돌
+				if (m_Fire[i].GetCanCol())
+				{
+					AddEffect(new Effect(m_tEffect, m_pSound, m_Fire[i].GetvCenterPos()));
+					m_pBoss->ColFire();
+					m_Fire[i].ColMonster();
+				}
+			}
+		}
+	}
 }
 
 void Stage::AddMonster(Monster* monster)
 {
 	m_MonsterList.push_back(monster);
+}
+
+void Stage::AddEffect(Effect* effect)
+{
+	m_EffectList.push_back(effect);
 }
 
 void Stage::UpdateMonster(float deltaTime)
@@ -60,9 +90,36 @@ void Stage::UpdateMonster(float deltaTime)
 	}
 }
 
+void Stage::UpdateEffect(float deltaTime)
+{
+	for (auto it = m_EffectList.begin(); it != m_EffectList.end();)
+	{
+		auto obj = *it;
+		if (!obj->GetActive())
+		{
+			it = m_EffectList.erase(it);
+			SAFE_DELETE(obj);
+		}
+		else
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
+}
+
+
 void Stage::DrawMonster()
 {
 	for (auto it = m_MonsterList.begin(); it != m_MonsterList.end(); ++it)
+	{
+		(*it)->Draw();
+	}
+}
+
+void Stage::DrawEffect()
+{
+	for (auto it = m_EffectList.begin(); it != m_EffectList.end(); ++it)
 	{
 		(*it)->Draw();
 	}

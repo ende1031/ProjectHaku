@@ -14,6 +14,7 @@ void TitleMenu::Start(Texture texture, Sound* sound)
 
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
+	m_pSound = sound;
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -54,11 +55,13 @@ void TitleMenu::Input()
 		m_iMenuNum += 1;
 		if (m_iMenuNum >= 3)
 			m_iMenuNum = 0;
+		m_pSound->PlaySE("Sound/Button.mp3");
 	}
 	if (KeyInput(VK_LEFT))
 	{
 		m_iMenuNum -= 1;
 		if (m_iMenuNum < 0)
 			m_iMenuNum = 2;
+		m_pSound->PlaySE("Sound/Button.mp3");
 	}
 }

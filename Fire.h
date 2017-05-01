@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Monster.h"
 
 class Fire : public Object
 {
@@ -9,6 +10,9 @@ public:
 
 	void Start(Texture texture1, Texture texture2, Sound* sound, Player* player, int fireNum);
 	void Update(float deltaTime);
+
+	void ColMonster(); //몬스터 또는 보스와 충돌
+	bool GetCanCol() { return m_bCanCol; }
 
 private:
 	Player* m_pPlayer;
@@ -29,4 +33,7 @@ private:
 
 	D3DXVECTOR3 m_vMoveVector;
 	float m_MoveSpeed;
+
+	float m_ColTimer;
+	bool m_bCanCol; //충돌 가능한지
 };

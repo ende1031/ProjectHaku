@@ -12,10 +12,9 @@ void Player::Start(Texture texture, Sound* sound)
 {
 	m_bActive = true;
 
-	m_pSound = sound;
-
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
+	m_pSound = sound;
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -32,13 +31,13 @@ void Player::Start(Texture texture, Sound* sound)
 
 	m_radius = 40;
 
-	m_FireCount = 1;
+	m_FireCount = 3;
 	m_FireRotateSpeed_Small = 200;
 	m_FireRotateSpeed_Big = 100;
 	m_FireAngle_Small = 0;
 	m_FireAngle_Big = 0;
 	for (int i = 0; i < 15; i++) m_bFireAttack[i] = false;
-	m_AttackSpeed = 0.1f;
+	m_AttackSpeed = 0.17f;
 	m_AttackSpeedTimer = 0.f;
 }
 
@@ -153,9 +152,10 @@ void Player::Ataack()
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			if (!m_bFireAttack[i])
+			if (!m_bFireAttack[i] && m_FireCount > i)
 			{
 				cout << "여우령 공격" << endl;
+				m_pSound->PlaySE("Sound/Shoot.mp3");
 				m_bFireAttack[i] = true;
 				m_AttackSpeedTimer = 0;
 				break;

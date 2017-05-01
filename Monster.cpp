@@ -21,7 +21,8 @@ void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
-	m_ColTimer = 0;
+	m_ColTimer = 1.0f;
+	m_ariveTime = 0;
 
 	m_radius = m_MonsterData.radius;
 	m_HP = m_MonsterData.maxHP;
@@ -36,7 +37,7 @@ void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data
 	switch (m_Pattern)
 	{
 	case 0:
-		m_vPos = D3DXVECTOR3(1000 - m_width/2, 135 - m_height/2, 0);
+		m_vPos = D3DXVECTOR3(1000 - m_width / 2, 135 - m_height/2, 0);
 		break;
 	case 1:
 		m_vPos = D3DXVECTOR3(1000 - m_width / 2, 270 - m_height / 2, 0);
@@ -49,9 +50,9 @@ void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data
 
 void Monster::Update(float deltaTime)
 {
+	m_ariveTime += deltaTime;
 	m_ColTimer += deltaTime;
 	FadeIn(&m_alpha, deltaTime);
-	SpecialPattern(deltaTime);
 	Animation(m_MonsterData.rowNum, m_MonsterData.lastNum, 0.1f, deltaTime);
 
 	if (m_HP <= 0)
@@ -73,25 +74,33 @@ void Monster::Update(float deltaTime)
 		break;
 	}
 
-	if (m_vPos.x < 0 - m_width)
+	//스크린 밖에서 생성되기 때문에 스크린 밖에 있어도 생성후 일정시간이 지난 몬스터만 삭제
+	if (m_ariveTime > 2.0f)
 	{
-		cout << "화면 밖으로 나간 몬스터 삭제" << endl;
-		m_bActive = false;
+		if (m_vPos.x < 0 - m_width || m_vPos.x > ScreenSizeX || m_vPos.y < 0 - m_height || m_vPos.y > ScreenSizeY)
+		{
+			cout << "화면 밖으로 나간 몬스터 삭제" << endl;
+			m_bActive = false;
+		}
 	}
-}
-
-void Monster::SpecialPattern(float deltaTime)
-{
-	//상속받아서 사용하도록
-	//딱히 안써도 상관은 없음.
 }
 
 void Monster::ColFire()
 {
-	if (m_ColTimer > 0.2f)
+	//if (m_ColTimer > 0.2f)
 	{
 		cout << "몬스터 타격" << endl;
 		m_HP--;
 		m_ColTimer = 0;
 	}
+}
+
+bool Monster::GetCanCol()
+{
+	if (m_ColTimer > 0.2f)
+	{
+		return true;
+	}
+	else
+		return false;
 }

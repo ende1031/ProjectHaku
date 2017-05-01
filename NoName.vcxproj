@@ -379,6 +379,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Boss01.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Fire.cpp" />
@@ -403,6 +406,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="Boss01.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Fire.h" />

@@ -17,6 +17,7 @@ public:
 class Monster : public Object
 {
 public:
+	//Monster() {}
 	Monster(Texture texture, Sound* sound, int pattern, MonsterData data);
 	~Monster();
 
@@ -25,12 +26,14 @@ public:
 	int GetHP() { return m_HP; }
 
 	void ColFire(); //여우령과 충돌
-	float m_ColTimer;
+	bool GetCanCol();
 
-private:
+protected:
+	float m_ColTimer;
+	
 	MonsterData m_MonsterData;
 	int m_HP;
 	int m_Pattern;
 
-	void SpecialPattern(float deltaTime); //특수패턴 (Update 안에 들어감)
+	float m_ariveTime; //살아있던 시간
 };

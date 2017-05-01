@@ -33,10 +33,9 @@ void Object::Start(Texture texture, Sound* sound)
 {
 	m_bActive = true;
 
-	m_pSound = sound;
-
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
+	m_pSound = sound;
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -110,7 +109,7 @@ void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime
 void Object::FadeIn(unsigned int *alpha, float deltaTime)
 {
 	if (*alpha < 255)
-		(*alpha) += (unsigned int)700 * deltaTime;
+		(*alpha) += (unsigned int)(700 * deltaTime);
 
 	if (*alpha >= 255)
 		*alpha = 255;
