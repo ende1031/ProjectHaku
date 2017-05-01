@@ -1,19 +1,20 @@
 #include "Monster.h"
 
-Monster::Monster(Texture texture, Sound* sound, MonsterData data)
+Monster::Monster(Texture texture, Sound* sound, int pattern, MonsterData data)
 {
-	Start(texture, sound, data);
-	cout << data.pattern << "패턴 몬스터 생성" << endl;
+	Start(texture, sound, pattern, data);
+	cout << pattern << "패턴 몬스터 생성" << endl;
 }
 
 Monster::~Monster()
 {
 }
 
-void Monster::Start(Texture texture, Sound* sound, MonsterData data)
+void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data)
 {
 	m_bActive = true;
 	m_MonsterData = data;
+	m_Pattern = pattern;
 
 	m_pSprite = Device::GetSprite();
 	m_pTexture = texture.GetTexture();
@@ -32,16 +33,16 @@ void Monster::Start(Texture texture, Sound* sound, MonsterData data)
 	m_height = (float)m_rect.bottom;
 
 	//패턴별 시작 위치 등 설정
-	switch (m_MonsterData.pattern)
+	switch (m_Pattern)
 	{
 	case 0:
-		m_vPos = D3DXVECTOR3(900 - m_width/2, 100 - m_height/2, 0);
+		m_vPos = D3DXVECTOR3(1000 - m_width/2, 135 - m_height/2, 0);
 		break;
 	case 1:
-		m_vPos = D3DXVECTOR3(900 - m_width / 2, 250 - m_height / 2, 0);
+		m_vPos = D3DXVECTOR3(1000 - m_width / 2, 270 - m_height / 2, 0);
 		break;
 	case 2:
-		m_vPos = D3DXVECTOR3(900 - m_width / 2, 400 - m_height / 2, 0);
+		m_vPos = D3DXVECTOR3(1000 - m_width / 2, 405 - m_height / 2, 0);
 		break;
 	}
 }
@@ -59,7 +60,7 @@ void Monster::Update(float deltaTime)
 	}
 
 	//패턴별 움직임 설정
-	switch (m_MonsterData.pattern)
+	switch (m_Pattern)
 	{
 	case 0:
 		Move(-300, 0, deltaTime);

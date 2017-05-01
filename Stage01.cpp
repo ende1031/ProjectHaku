@@ -13,6 +13,7 @@ void Stage01::Start(Sound* sound)
 {
 	m_bChangeScene = false;
 	m_SceneTime = 0;
+	m_MonsterCounter = 0;
 
 	m_pSound = sound;
 	m_pSound->Stop();
@@ -37,6 +38,13 @@ void Stage01::Start(Sound* sound)
 	m_tMonster01.Start(L"Image/Stage01/Monster01.png");
 	m_tMonster02.Start(L"Image/Stage01/Monster02.png");
 	m_tMonster03.Start(L"Image/Stage01/Monster03.png");
+
+	//pattern, radius, rectRight, rectBottom, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
+	m_MonsterData01 = { 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
+	m_MonsterData02 = { 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
+	m_MonsterData03 = { 40.0f, 97.0f, 93.0f, 6, 6, 1, 0.5f, 10.0f };
+
+	LoadMonsters("Data/Stage01Monsters.txt");
 }
 
 void Stage01::Update(float deltaTime)
@@ -53,20 +61,34 @@ void Stage01::Update(float deltaTime)
 		m_Fire[i].Update(deltaTime);
 
 	UpdateMonster(deltaTime); //몬스터 전체 Update
+	Collision();
 
+	/*
 	if (m_SceneTime > 0.5f)
 	{
-		//pattern, radius, rectRight, rectBottom, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
-		MonsterData temp = { 0, 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster01, m_pSound, temp));
-		temp = { 1, 35.0f, 65.0f, 97.0f, 2, 2, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster02, m_pSound, temp));
-		temp = { 2, 40.0f, 97.0f, 93.0f, 6, 6, 1, 0.5f, 10.0f };
-		AddMonster(new Monster(m_tMonster03, m_pSound, temp));
+		AddMonster(new Monster(m_tMonster01, m_pSound, 0, m_MonsterData01));
+		AddMonster(new Monster(m_tMonster02, m_pSound, 1, m_MonsterData02));
+		AddMonster(new Monster(m_tMonster03, m_pSound, 2, m_MonsterData03));
 		m_SceneTime = 0;
 	}
+	*/
 
-	Collision();
+	if (m_SceneTime > m_MonsterFileData[m_MonsterCounter].time && m_MonsterDataLine > m_MonsterCounter)
+	{
+		switch (m_MonsterFileData[m_MonsterCounter].type)
+		{
+		case 1:
+			AddMonster(new Monster(m_tMonster01, m_pSound, m_MonsterFileData[m_MonsterCounter].pattern, m_MonsterData01));
+			break;
+		case 2:
+			AddMonster(new Monster(m_tMonster02, m_pSound, m_MonsterFileData[m_MonsterCounter].pattern, m_MonsterData02));
+			break;
+		case 3:
+			AddMonster(new Monster(m_tMonster03, m_pSound, m_MonsterFileData[m_MonsterCounter].pattern, m_MonsterData03));
+			break;
+		}
+		m_MonsterCounter++;
+	}
 
 	if (KeyInput(VK_ESCAPE))
 	{

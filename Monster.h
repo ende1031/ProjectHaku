@@ -4,7 +4,6 @@
 class MonsterData
 {
 public:
-	int pattern;
 	float radius;
 	float rectRight;
 	float rectBottom;
@@ -18,10 +17,10 @@ public:
 class Monster : public Object
 {
 public:
-	Monster(Texture texture, Sound* sound, MonsterData data);
+	Monster(Texture texture, Sound* sound, int pattern, MonsterData data);
 	~Monster();
 
-	void Start(Texture texture, Sound* sound, MonsterData data);
+	void Start(Texture texture, Sound* sound, int pattern, MonsterData data);
 	void Update(float deltaTime);
 	int GetHP() { return m_HP; }
 
@@ -31,6 +30,7 @@ public:
 private:
 	MonsterData m_MonsterData;
 	int m_HP;
+	int m_Pattern;
 
 	void SpecialPattern(float deltaTime); //특수패턴 (Update 안에 들어감)
 };

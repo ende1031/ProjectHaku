@@ -6,6 +6,7 @@ Stage::Stage()
 
 Stage::~Stage()
 {
+	SAFE_DELETE_ARRAY(m_MonsterFileData);
 }
 
 void Stage::Collision()
@@ -65,4 +66,36 @@ void Stage::DrawMonster()
 	{
 		(*it)->Draw();
 	}
+}
+
+void Stage::LoadMonsters(const char* mobdata)
+{
+	ifstream Data;
+	m_MonsterDataLine = 1;
+
+	//line 수 구하기
+	Data.open(mobdata, ios::in);
+	char c;
+	while (Data.get(c))
+	{
+		if (c == '\n') ++m_MonsterDataLine;
+	}
+	Data.close();
+
+	m_MonsterFileData = new MonsterFileData[m_MonsterDataLine];
+
+	//데이터 불러오기
+	Data.open(mobdata, ios::in);
+	for (int i = 0; i < m_MonsterDataLine; i++)
+	{
+		Data >> m_MonsterFileData[i].time >> m_MonsterFileData[i].type >> m_MonsterFileData[i].pattern;
+	}
+	Data.close();
+
+	cout << mobdata << "에서 몬스터 데이터가 로드되었습니다." << endl << "===========================================" << endl;
+	for (int i = 0; i < m_MonsterDataLine; i++)
+	{
+		cout << "시간 : " << m_MonsterFileData[i].time << "\t타입 : " << m_MonsterFileData[i].type << "\t패턴 : " << m_MonsterFileData[i].pattern << endl;
+	}
+	cout << "===========================================" << endl;
 }
