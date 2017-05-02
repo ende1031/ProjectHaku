@@ -7,6 +7,7 @@
 #include "Monster.h"
 #include "Effect.h"
 #include "Boss.h"
+#include "MonsterBullet.h"
 
 //Stge에서 파일입출력으로 몬스터파일을 저장할 구조체
 class MonsterFileData
@@ -34,6 +35,7 @@ protected:
 	//몬스터, 이펙트, 불릿 리스트
 	std::list<Monster*> m_MonsterList;
 	//std::list<Monster*>* GetMonsterList() { return &m_MonsterList; }
+	std::list<MonsterBullet*> m_BulletList; //몬스터 불릿
 	std::list<Effect*> m_EffectList;
 
 	//파일입출력 관련
@@ -54,6 +56,10 @@ protected:
 	void AddMonster(Monster* monster); //몬스터를 리스트에 추가
 	void UpdateMonster(float deltaTime);
 	void DrawMonster();
+
+	void AddBullet(MonsterBullet* bullet);
+	void UpdateBullet(float deltaTime);
+	void DrawBullet();
 
 	void AddEffect(Effect* effect);
 	void UpdateEffect(float deltaTime); //몬스터와 별도로 사용할 수 있게 따로 만듬

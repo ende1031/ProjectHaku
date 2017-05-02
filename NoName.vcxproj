@@ -382,6 +382,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss01.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="MonsterBullet.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Fire.cpp" />
@@ -409,6 +410,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss01.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="MonsterBullet.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Fire.h" />

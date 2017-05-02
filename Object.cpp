@@ -116,3 +116,11 @@ void Object::FadeIn(unsigned int *alpha, float deltaTime)
 
 	m_color = D3DCOLOR_ARGB(*alpha, 255, 255, 255);
 }
+
+bool Object::GetOutsideScreen()
+{
+	if (m_vPos.x < 0 - m_width || m_vPos.x > ScreenSizeX || m_vPos.y < 0 - m_height || m_vPos.y > ScreenSizeY)
+		return true;
+	else
+		return false;
+}

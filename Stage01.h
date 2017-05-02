@@ -20,8 +20,9 @@ private:
 	Texture m_tMonster01;
 	Texture m_tMonster02;
 	Texture m_tMonster03;
-
 	Texture m_tBoss;
+
+	Texture m_tMonsterBullet;
 
 	Boss01 m_Boss01;
 

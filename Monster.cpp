@@ -77,7 +77,7 @@ void Monster::Update(float deltaTime)
 	//스크린 밖에서 생성되기 때문에 스크린 밖에 있어도 생성후 일정시간이 지난 몬스터만 삭제
 	if (m_ariveTime > 2.0f)
 	{
-		if (m_vPos.x < 0 - m_width || m_vPos.x > ScreenSizeX || m_vPos.y < 0 - m_height || m_vPos.y > ScreenSizeY)
+		if (GetOutsideScreen())
 		{
 			cout << "화면 밖으로 나간 몬스터 삭제" << endl;
 			m_bActive = false;

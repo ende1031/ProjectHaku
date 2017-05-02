@@ -67,6 +67,11 @@ void Stage::AddMonster(Monster* monster)
 	m_MonsterList.push_back(monster);
 }
 
+void Stage::AddBullet(MonsterBullet* bullet)
+{
+	m_BulletList.push_back(bullet);
+}
+
 void Stage::AddEffect(Effect* effect)
 {
 	m_EffectList.push_back(effect);
@@ -80,6 +85,24 @@ void Stage::UpdateMonster(float deltaTime)
 		if (!obj->GetActive()) //몬스터의 Active가 false면 삭제
 		{
 			it = m_MonsterList.erase(it);
+			SAFE_DELETE(obj);
+		}
+		else
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
+}
+
+void Stage::UpdateBullet(float deltaTime)
+{
+	for (auto it = m_BulletList.begin(); it != m_BulletList.end();)
+	{
+		auto obj = *it;
+		if (!obj->GetActive())
+		{
+			it = m_BulletList.erase(it);
 			SAFE_DELETE(obj);
 		}
 		else
@@ -112,6 +135,14 @@ void Stage::UpdateEffect(float deltaTime)
 void Stage::DrawMonster()
 {
 	for (auto it = m_MonsterList.begin(); it != m_MonsterList.end(); ++it)
+	{
+		(*it)->Draw();
+	}
+}
+
+void Stage::DrawBullet()
+{
+	for (auto it = m_BulletList.begin(); it != m_BulletList.end(); ++it)
 	{
 		(*it)->Draw();
 	}

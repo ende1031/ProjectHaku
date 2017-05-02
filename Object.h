@@ -44,6 +44,7 @@ public:
 	D3DXVECTOR3	GetvPos()	{ return m_vPos; };
 	float		GetRadius()	{ return m_radius; };
 	D3DXVECTOR3 GetvCenterPos() { return D3DXVECTOR3(m_vPos.x + (m_width / 2), m_vPos.y + (m_height / 2), 0); };
+	bool		GetOutsideScreen();
 
 	//Setter
 	void	SetRect(RECT rect) { m_rect = rect; }

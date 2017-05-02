@@ -39,10 +39,11 @@ void Stage01::Start(Sound* sound)
 	m_tMonster01.Start(L"Image/Stage01/Monster01.png");
 	m_tMonster02.Start(L"Image/Stage01/Monster02.png");
 	m_tMonster03.Start(L"Image/Stage01/Monster03.png");
+	m_tBoss.Start(L"Image/Stage01/Boss.png");
+	m_tMonsterBullet.Start(L"Image/MonsterBullet.png");
 
 	m_tEffect.Start(L"Image/FireEffect.png");
 
-	m_tBoss.Start(L"Image/Stage01/Boss.png");
 
 	//pattern, radius, rectRight, rectBottom, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
 	m_MonsterData01 = { 35.0f, 65.0f, 97.0f, 2, 2, 5, 0.5f, 10.0f };
@@ -71,11 +72,15 @@ void Stage01::Update(float deltaTime)
 		dynamic_cast<Boss01*>(m_pBoss)->Update(deltaTime);
 
 	UpdateMonster(deltaTime); //몬스터 전체 Update
+	UpdateBullet(deltaTime);
 	UpdateEffect(deltaTime);
 	Collision();
 
 	if (m_SceneTime > m_MonsterFileData[m_MonsterCounter].time && m_MonsterDataLine > m_MonsterCounter)
 	{
+		D3DXVECTOR3 temppos = {800,250,0};
+		//AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, temppos, m_Player.GetvCenterPos()));
+		//AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, temppos, 180));
 		switch (m_MonsterFileData[m_MonsterCounter].type)
 		{
 		case 0: //보스
@@ -114,6 +119,8 @@ void Stage01::Draw()
 		dynamic_cast<Boss01*>(m_pBoss)->Draw();
 
 	m_Player.Draw();
+
+	DrawBullet();
 
 	for (int i = 14; i >= 0; i--)
 		m_Fire[i].Draw();

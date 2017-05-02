@@ -102,6 +102,9 @@
     <ClInclude Include="Boss.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterBullet.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -168,6 +171,9 @@
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
