@@ -34,6 +34,7 @@ void MonsterBullet::Start(Texture texture, Sound* sound, D3DXVECTOR3 pos, float 
 
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
+	m_radius = 16.0f;
 
 	m_Speed = 600.0f;
 	m_Vector.x = cos(m_Angle * (D3DX_PI / 180)) * m_Speed;
@@ -58,6 +59,7 @@ void MonsterBullet::Start(Texture texture, Sound* sound, D3DXVECTOR3 pos, D3DXVE
 
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
+	m_radius = 16.0f;
 
 	m_Speed = 600.0f;
 	m_DistanceToTaget = D3DXVec3Length(&(target - m_vPos));

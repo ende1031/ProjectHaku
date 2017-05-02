@@ -74,6 +74,8 @@ void Stage01::Update(float deltaTime)
 	UpdateMonster(deltaTime); //몬스터 전체 Update
 	UpdateBullet(deltaTime);
 	UpdateEffect(deltaTime);
+
+	CheckMonsterShoot();
 	Collision();
 
 	if (m_SceneTime > m_MonsterFileData[m_MonsterCounter].time && m_MonsterDataLine > m_MonsterCounter)

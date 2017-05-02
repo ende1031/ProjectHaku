@@ -50,6 +50,7 @@ protected:
 	//BossData m_BossData;
 
 	Texture m_tEffect; //이펙트 텍스쳐. 반드시 Start()에서 초기화 해주기.
+	Texture m_tMonsterBullet; //이거도
 	
 	void Collision();
 
@@ -60,6 +61,7 @@ protected:
 	void AddBullet(MonsterBullet* bullet);
 	void UpdateBullet(float deltaTime);
 	void DrawBullet();
+	void CheckMonsterShoot();
 
 	void AddEffect(Effect* effect);
 	void UpdateEffect(float deltaTime); //몬스터와 별도로 사용할 수 있게 따로 만듬

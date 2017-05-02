@@ -22,6 +22,9 @@ void Boss01::Start(Texture texture, Sound* sound)
 	m_AniTimer = 0;
 	m_AniNum = 0;
 	m_ColTimer = 1.0f;
+	m_ariveTime = 0;
+	m_bShootBullet = false;
+	m_ShootTimer = 0;
 
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
@@ -45,7 +48,9 @@ void Boss01::Update(float deltaTime)
 
 	if (m_bActive)
 	{
+		m_ariveTime += deltaTime;
 		m_ColTimer += deltaTime;
+		m_ShootTimer += deltaTime;
 		FadeIn(&m_alpha, deltaTime);
 		Animation(4, 8, 0.1f, deltaTime);
 
@@ -65,4 +70,10 @@ void Boss01::Phase01(float deltaTime)
 {
 	if (m_vPos.x + m_width / 2 > 700)
 		Move(-200, 0, deltaTime);
+
+	if (m_ariveTime > 1.0f && m_ShootTimer > 0.2f)
+	{
+		ShootBullet(true);
+		m_ShootTimer = 0;
+	}
 }

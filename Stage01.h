@@ -22,8 +22,6 @@ private:
 	Texture m_tMonster03;
 	Texture m_tBoss;
 
-	Texture m_tMonsterBullet;
-
 	Boss01 m_Boss01;
 
 	BackGround m_BackGround01;

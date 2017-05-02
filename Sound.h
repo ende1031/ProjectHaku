@@ -1,7 +1,6 @@
+#pragma once
 #include <irrKlang.h>
 #pragma comment(lib, "irrKlang.lib")
-
-#pragma once
 
 class Sound
 {

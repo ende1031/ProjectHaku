@@ -12,6 +12,9 @@ public:
 	bool GetCanCol();
 	void ColFire(); //여우령과 충돌
 
+	BulletData GetBulletData() { return m_BulletData; }
+	bool GetShoot();
+
 	D3DXVECTOR3	GetvCenterPos() { return m_vCenterPos; };
 
 protected:
@@ -25,4 +28,13 @@ protected:
 	float m_MoveSpeed;
 
 	float m_ColTimer;
+
+	BulletData m_BulletData;
+	bool m_bShootBullet; //true면 Stage에서 불릿을 만들어줌
+	float m_ShootTimer;
+
+	float m_ariveTime; //살아있던 시간
+
+	void ShootBullet(bool toPlayer);
+	void ShootBullet(bool toPlayer, float angle);
 };

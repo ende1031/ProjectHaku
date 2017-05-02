@@ -28,12 +28,22 @@ public:
 	void ColFire(); //여우령과 충돌
 	bool GetCanCol();
 
-protected:
+	BulletData GetBulletData() { return m_BulletData; }
+	bool GetShoot();
+
+private:
 	float m_ColTimer;
 	
 	MonsterData m_MonsterData;
 	int m_HP;
 	int m_Pattern;
 
+	BulletData m_BulletData;
+	bool m_bShootBullet; //true면 Stage에서 불릿을 만들어줌
+	float m_ShootTimer;
+
 	float m_ariveTime; //살아있던 시간
+
+	void ShootBullet(bool toPlayer);
+	void ShootBullet(bool toPlayer, float angle);
 };

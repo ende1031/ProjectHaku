@@ -2,6 +2,13 @@
 #include "Device.h"
 #include "Texture.h"
 
+class BulletData
+{
+public:
+	bool toPlayer; //true일경우 플레이어를 향해 발사(유도탄은 아님)
+	float angle;
+};
+
 class Object
 {
 protected:

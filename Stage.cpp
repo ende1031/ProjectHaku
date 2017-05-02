@@ -60,6 +60,18 @@ void Stage::Collision()
 			}
 		}
 	}
+
+	//몬스터불릿 - 플레이어 충돌
+	for (auto it = m_BulletList.begin(); it != m_BulletList.end(); ++it)
+	{
+		float distance = D3DXVec3Length(&((*it)->GetvCenterPos() - m_Player.GetvCenterPos()));
+		if (distance < (*it)->GetRadius() + m_Player.GetRadius())
+		{
+			//충돌
+			m_Player.ColMonster();
+			(*it)->SetActive(false);
+		}
+	}
 }
 
 void Stage::AddMonster(Monster* monster)
@@ -131,7 +143,6 @@ void Stage::UpdateEffect(float deltaTime)
 	}
 }
 
-
 void Stage::DrawMonster()
 {
 	for (auto it = m_MonsterList.begin(); it != m_MonsterList.end(); ++it)
@@ -186,4 +197,36 @@ void Stage::LoadMonsters(const char* mobdata)
 		cout << "시간 : " << m_MonsterFileData[i].time << "\t타입 : " << m_MonsterFileData[i].type << "\t패턴 : " << m_MonsterFileData[i].pattern << endl;
 	}
 	cout << "===========================================" << endl;
+}
+
+void Stage::CheckMonsterShoot()
+{
+	//몬스터 불릿 발사 체크
+	for (auto it = m_MonsterList.begin(); it != m_MonsterList.end(); ++it)
+	{
+		if ((*it)->GetShoot())
+		{
+			if ((*it)->GetBulletData().toPlayer)
+			{
+				AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, (*it)->GetvCenterPos(), m_Player.GetvCenterPos()));
+			}
+			else
+			{
+				AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, (*it)->GetvCenterPos(), (*it)->GetBulletData().angle));
+			}
+		}
+	}
+
+	//보스 불릿 발사 체크
+	if (m_pBoss->GetShoot())
+	{
+		if (m_pBoss->GetBulletData().toPlayer)
+		{
+			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_Player.GetvCenterPos()));
+		}
+		else
+		{
+			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_pBoss->GetBulletData().angle));
+		}
+	}
 }

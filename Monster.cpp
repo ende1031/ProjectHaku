@@ -33,6 +33,9 @@ void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
 
+	m_bShootBullet = false;
+	m_ShootTimer = 0;
+
 	//패턴별 시작 위치 등 설정
 	switch (m_Pattern)
 	{
@@ -52,6 +55,7 @@ void Monster::Update(float deltaTime)
 {
 	m_ariveTime += deltaTime;
 	m_ColTimer += deltaTime;
+	m_ShootTimer += deltaTime;
 	FadeIn(&m_alpha, deltaTime);
 	Animation(m_MonsterData.rowNum, m_MonsterData.lastNum, 0.1f, deltaTime);
 
@@ -83,6 +87,12 @@ void Monster::Update(float deltaTime)
 			m_bActive = false;
 		}
 	}
+
+	if (m_ariveTime > 1.0f && m_ShootTimer > 0.5f)
+	{
+		ShootBullet(false, 180);
+		m_ShootTimer = 0;
+	}
 }
 
 void Monster::ColFire()
@@ -103,4 +113,30 @@ bool Monster::GetCanCol()
 	}
 	else
 		return false;
+}
+
+bool Monster::GetShoot()
+{
+	if (m_bShootBullet)
+	{
+		cout << "몬스터 불릿 발사" << endl;
+		m_bShootBullet = false;
+		return true;
+	}
+	else
+		return false;
+}
+
+void Monster::ShootBullet(bool toPlayer)
+{
+	m_BulletData.angle = 180;
+	m_BulletData.toPlayer = toPlayer;
+	m_bShootBullet = true;
+}
+
+void Monster::ShootBullet(bool toPlayer, float angle)
+{
+	m_BulletData.angle = angle;
+	m_BulletData.toPlayer = toPlayer;
+	m_bShootBullet = true;
 }

@@ -29,7 +29,7 @@ void Player::Start(Texture texture, Sound* sound)
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
 
-	m_radius = 40;
+	m_radius = 30;
 
 	m_FireCount = 3;
 	m_FireRotateSpeed_Small = 200;
