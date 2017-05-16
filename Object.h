@@ -6,7 +6,9 @@ class BulletData
 {
 public:
 	bool toPlayer; //true일경우 플레이어를 향해 발사(유도탄은 아님)
-	float angle;
+	int count; //개수
+	float startAngle; //시작 각도
+	float angle; //불릿 사이 각도
 };
 
 class Object
@@ -55,6 +57,7 @@ public:
 
 	//Setter
 	void	SetRect(RECT rect) { m_rect = rect; }
+	void	SetPos(D3DXVECTOR3 pos) { m_vPos = pos; }
 	void	SetActive(bool live) { m_bActive = live; };
 
 };

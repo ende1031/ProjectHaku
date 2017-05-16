@@ -21,6 +21,14 @@ private:
 
 	float m_ColTimer;
 
+	D3DXVECTOR2 m_moveVec;
+	float m_moveSpeed;
+
+	int m_point;
+	int m_maxPoint;
+
+	bool m_bCanInput;
+
 public:
 	Player();
 	~Player();
@@ -38,8 +46,11 @@ public:
 	int		GetFireCount()			{ return m_FireCount; };
 	float	GetFireAngle_Small()	{ return m_FireAngle_Small; };
 	float	GetFireAngle_Big()		{ return m_FireAngle_Big; };
-	bool	GetFireAttack(int num) { return m_bFireAttack[num - 1]; };
+	bool	GetFireAttack(int num)	{ return m_bFireAttack[num - 1]; };
+	int		GetPoint()				{ return m_point; };
 
 	void	SetFireAttack(int num, bool flag) { m_bFireAttack[num - 1] = flag; };
+	void	SetPointUP(int po) { m_point += po; };
+	void	SetCanInput(bool can) { m_bCanInput = can; };
 };
 

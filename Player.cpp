@@ -21,6 +21,8 @@ void Player::Start(Texture texture, Sound* sound)
 
 	m_ColTimer = 0;
 
+	m_bCanInput = true;
+
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_rect = { 0, 0, 106, 82};
@@ -29,9 +31,12 @@ void Player::Start(Texture texture, Sound* sound)
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
 
-	m_radius = 30;
+	m_radius = 20;
 
-	m_FireCount = 3;
+	m_moveVec = D3DXVECTOR2(0, 0);
+	m_moveSpeed = 500.0f;
+
+	m_FireCount = 5;
 	m_FireRotateSpeed_Small = 200;
 	m_FireRotateSpeed_Big = 100;
 	m_FireAngle_Small = 0;
@@ -39,6 +44,9 @@ void Player::Start(Texture texture, Sound* sound)
 	for (int i = 0; i < 15; i++) m_bFireAttack[i] = false;
 	m_AttackSpeed = 0.17f;
 	m_AttackSpeedTimer = 0.f;
+
+	m_maxPoint = 10;
+	m_point = 0;
 }
 
 void Player::Update(float deltaTime)
@@ -50,7 +58,14 @@ void Player::Update(float deltaTime)
 	m_AttackSpeedTimer += deltaTime;
 	m_ColTimer += deltaTime;
 
-	Input(deltaTime);
+	if (m_point >= m_maxPoint)
+	{
+		InsertFire(1);
+		m_point = 0;
+	}
+
+	if(m_bCanInput)
+		Input(deltaTime);
 }
 
 void Player::Draw()
@@ -65,34 +80,52 @@ void Player::Draw()
 
 void Player::Input(float deltaTime)
 {
-	if (KeyDown(VK_LEFT))
+	if (KeyDown(VK_LEFT) && KeyDown(VK_RIGHT))
 	{
-		if (m_vPos.x > -40)
-			Move(-300, 0, deltaTime);
+		m_moveVec.x = 0;
 	}
-	if (KeyDown(VK_RIGHT))
+	else if (KeyDown(VK_LEFT) && m_vPos.x > -40)
 	{
-		if (m_vPos.x < ScreenSizeX - m_width)
-			Move(300, 0, deltaTime);
+		m_moveVec.x = -1;
 	}
-	if (KeyDown(VK_UP))
+	else if (KeyDown(VK_RIGHT) && m_vPos.x < ScreenSizeX - m_width)
 	{
-		if (m_vPos.y > 0)
-			Move(0, -300, deltaTime);
+		m_moveVec.x = 1;
 	}
-	if (KeyDown(VK_DOWN))
+	else
 	{
-		if (m_vPos.y < ScreenSizeY - m_height)
-			Move(0, 300, deltaTime);
+		m_moveVec.x = 0;
 	}
-	if (KeyDown(VK_Z))
+	if (KeyDown(VK_UP) && KeyDown(VK_DOWN))
+	{
+		m_moveVec.y = 0;
+	}
+	else if (KeyDown(VK_UP) && m_vPos.y > 0)
+	{
+		m_moveVec.y = -1;
+	}
+	else if (KeyDown(VK_DOWN) && m_vPos.y < ScreenSizeY - m_height)
+	{
+		m_moveVec.y = 1;
+	}
+	else
+	{
+		m_moveVec.y = 0;
+	}
+
+	D3DXVec2Normalize(&m_moveVec, &m_moveVec);
+	Move(m_moveVec.x * m_moveSpeed , m_moveVec.y * m_moveSpeed, deltaTime);
+
+	if (KeyDown(VK_SPACE))
 	{
 		Ataack();
 	}
+	/*
 	if (KeyDown(VK_X))
 	{
 		AllAtaack();
 	}
+	*/
 	if (KeyInput(VK_A))
 	{
 		InsertFire(1);

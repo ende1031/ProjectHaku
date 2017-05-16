@@ -47,9 +47,11 @@ void Boss::ShootBullet(bool toPlayer)
 	m_bShootBullet = true;
 }
 
-void Boss::ShootBullet(bool toPlayer, float angle)
+void Boss::ShootBullet(bool toPlayer, int count, float startAngle, float angle)
 {
-	m_BulletData.angle = angle;
 	m_BulletData.toPlayer = toPlayer;
+	m_BulletData.count = count;
+	m_BulletData.startAngle = startAngle;
+	m_BulletData.angle = angle;
 	m_bShootBullet = true;
 }

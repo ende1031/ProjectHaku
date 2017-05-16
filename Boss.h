@@ -16,6 +16,7 @@ public:
 	bool GetShoot();
 
 	D3DXVECTOR3	GetvCenterPos() { return m_vCenterPos; };
+	int GetHP() { return m_HP; };
 
 protected:
 	D3DXVECTOR3 m_vCenterPos;
@@ -36,5 +37,5 @@ protected:
 	float m_ariveTime; //살아있던 시간
 
 	void ShootBullet(bool toPlayer);
-	void ShootBullet(bool toPlayer, float angle);
+	void ShootBullet(bool toPlayer, int count, float startAngle, float angle);
 };

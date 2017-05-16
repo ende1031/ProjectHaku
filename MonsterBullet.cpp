@@ -27,16 +27,16 @@ void MonsterBullet::Start(Texture texture, Sound* sound, D3DXVECTOR3 pos, float 
 	m_AniTimer = 0;
 	m_AniNum = 0;
 
-	m_alpha = 255;
+	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_rect = { 0, 0, 35, 35 };
 	m_vPos = pos;
 
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
-	m_radius = 16.0f;
+	m_radius = 10.0f;
 
-	m_Speed = 600.0f;
+	m_Speed = 500.0f;
 	m_Vector.x = cos(m_Angle * (D3DX_PI / 180)) * m_Speed;
 	m_Vector.y = sin(m_Angle * (D3DX_PI / 180)) * m_Speed;
 }
@@ -52,7 +52,7 @@ void MonsterBullet::Start(Texture texture, Sound* sound, D3DXVECTOR3 pos, D3DXVE
 	m_AniTimer = 0;
 	m_AniNum = 0;
 
-	m_alpha = 255;
+	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
 	m_rect = { 0, 0, 35, 35 };
 	m_vPos = pos;

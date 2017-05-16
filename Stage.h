@@ -8,6 +8,9 @@
 #include "Effect.h"
 #include "Boss.h"
 #include "MonsterBullet.h"
+#include "MBulletEffect.h"
+#include "Bar.h"
+#include "StageClear.h"
 
 //Stge에서 파일입출력으로 몬스터파일을 저장할 구조체
 class MonsterFileData
@@ -30,6 +33,24 @@ protected:
 	Fire m_Fire[15];
 	Boss* m_pBoss;
 
+	Object m_GameOver;
+	Texture m_tGameOver;
+	bool m_bGameOverSE;
+
+	StageClear m_StageClear;
+	Texture m_tStageClear;
+	Texture m_tStageClearLight;
+	bool m_bClear;
+	bool m_bStageClearSE;
+
+	Bar m_Bar;
+	Texture m_tBarBG;
+	Texture m_tBar;
+
+	Texture m_tEffect; //이펙트 텍스쳐. 반드시 Start()에서 초기화 해주기.
+	Texture m_tMonsterBullet; //이거도
+	Texture m_tMEffect; //이거도
+
 	bool m_bAppearBoss;
 
 	//몬스터, 이펙트, 불릿 리스트
@@ -37,6 +58,7 @@ protected:
 	//std::list<Monster*>* GetMonsterList() { return &m_MonsterList; }
 	std::list<MonsterBullet*> m_BulletList; //몬스터 불릿
 	std::list<Effect*> m_EffectList;
+	std::list<MBulletEffect*> m_MEffectList;
 
 	//파일입출력 관련
 	MonsterFileData *m_MonsterFileData; //몬스터 데이터를 저장하는 구조체 배열
@@ -48,9 +70,6 @@ protected:
 	MonsterData m_MonsterData02;
 	MonsterData m_MonsterData03;
 	//BossData m_BossData;
-
-	Texture m_tEffect; //이펙트 텍스쳐. 반드시 Start()에서 초기화 해주기.
-	Texture m_tMonsterBullet; //이거도
 	
 	void Collision();
 
@@ -66,6 +85,10 @@ protected:
 	void AddEffect(Effect* effect);
 	void UpdateEffect(float deltaTime); //몬스터와 별도로 사용할 수 있게 따로 만듬
 	void DrawEffect();
+
+	void AddMEffect(MBulletEffect* effect);
+	void UpdateMEffect(float deltaTime);
+	void DrawMEffect();
 
 	void LoadMonsters(const char* mobdata); //몬스터 데이터 불러오기
 };

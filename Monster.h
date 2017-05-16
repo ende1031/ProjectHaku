@@ -41,9 +41,13 @@ private:
 	BulletData m_BulletData;
 	bool m_bShootBullet; //true면 Stage에서 불릿을 만들어줌
 	float m_ShootTimer;
+	int m_attackCount;
 
 	float m_ariveTime; //살아있던 시간
 
+	bool m_bMoveUp;
+	float m_sinAngle;
+
 	void ShootBullet(bool toPlayer);
-	void ShootBullet(bool toPlayer, float angle);
+	void ShootBullet(bool toPlayer, int count, float startAngle, float angle);
 };

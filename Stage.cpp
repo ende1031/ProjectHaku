@@ -26,6 +26,7 @@ void Stage::Collision()
 					if (m_Fire[i].GetCanCol())
 					{
 						AddEffect(new Effect(m_tEffect, m_pSound, m_Fire[i].GetvCenterPos()));
+						m_Player.SetPointUP(1);
 						(*it)->ColFire();
 						m_Fire[i].ColMonster();
 					}
@@ -53,6 +54,7 @@ void Stage::Collision()
 				//충돌
 				if (m_Fire[i].GetCanCol())
 				{
+					m_Player.SetPointUP(1);
 					AddEffect(new Effect(m_tEffect, m_pSound, m_Fire[i].GetvCenterPos()));
 					m_pBoss->ColFire();
 					m_Fire[i].ColMonster();
@@ -68,6 +70,7 @@ void Stage::Collision()
 		if (distance < (*it)->GetRadius() + m_Player.GetRadius())
 		{
 			//충돌
+			AddMEffect(new MBulletEffect(m_tMEffect, m_pSound, (*it)->GetvCenterPos()));
 			m_Player.ColMonster();
 			(*it)->SetActive(false);
 		}
@@ -87,6 +90,11 @@ void Stage::AddBullet(MonsterBullet* bullet)
 void Stage::AddEffect(Effect* effect)
 {
 	m_EffectList.push_back(effect);
+}
+
+void Stage::AddMEffect(MBulletEffect* effect)
+{
+	m_MEffectList.push_back(effect);
 }
 
 void Stage::UpdateMonster(float deltaTime)
@@ -143,6 +151,24 @@ void Stage::UpdateEffect(float deltaTime)
 	}
 }
 
+void Stage::UpdateMEffect(float deltaTime)
+{
+	for (auto it = m_MEffectList.begin(); it != m_MEffectList.end();)
+	{
+		auto obj = *it;
+		if (!obj->GetActive())
+		{
+			it = m_MEffectList.erase(it);
+			SAFE_DELETE(obj);
+		}
+		else
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
+}
+
 void Stage::DrawMonster()
 {
 	for (auto it = m_MonsterList.begin(); it != m_MonsterList.end(); ++it)
@@ -162,6 +188,14 @@ void Stage::DrawBullet()
 void Stage::DrawEffect()
 {
 	for (auto it = m_EffectList.begin(); it != m_EffectList.end(); ++it)
+	{
+		(*it)->Draw();
+	}
+}
+
+void Stage::DrawMEffect()
+{
+	for (auto it = m_MEffectList.begin(); it != m_MEffectList.end(); ++it)
 	{
 		(*it)->Draw();
 	}
@@ -212,7 +246,10 @@ void Stage::CheckMonsterShoot()
 			}
 			else
 			{
-				AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, (*it)->GetvCenterPos(), (*it)->GetBulletData().angle));
+				for (int i = 0; i < (*it)->GetBulletData().count; i++)
+				{
+					AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, (*it)->GetvCenterPos(), (*it)->GetBulletData().startAngle + (*it)->GetBulletData().angle * i));
+				}
 			}
 		}
 	}
@@ -226,7 +263,10 @@ void Stage::CheckMonsterShoot()
 		}
 		else
 		{
-			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_pBoss->GetBulletData().angle));
+			for (int i = 0; i < m_pBoss->GetBulletData().count; i++)
+			{
+			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_pBoss->GetBulletData().angle + m_pBoss->GetBulletData().angle * i));
+			}
 		}
 	}
 }

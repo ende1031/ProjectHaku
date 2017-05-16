@@ -37,9 +37,15 @@ void Boss01::Start(Texture texture, Sound* sound)
 	m_vPos = D3DXVECTOR3(900 - m_width / 2, 270 - m_height / 2, 0);
 	m_vCenterPos = D3DXVECTOR3(m_vPos.x + 62.f, m_vPos.y + 90.f, 0);
 
-	m_MaxHP = 500;
+	m_MaxHP = 100;
 	m_HP = m_MaxHP;
 	m_Phase = 0;
+
+	m_attackCount = 0;
+	m_specialCount = 0;
+
+	m_bMoveBack = false;
+	m_bMoveUp = false;
 }
 
 void Boss01::Update(float deltaTime)
@@ -68,12 +74,54 @@ void Boss01::Update(float deltaTime)
 
 void Boss01::Phase01(float deltaTime)
 {
+	/*
 	if (m_vPos.x + m_width / 2 > 700)
 		Move(-200, 0, deltaTime);
+		*/
+
+	if (m_bMoveBack)
+	{
+		Move(50, 0, deltaTime);
+		if (m_vCenterPos.x > ScreenSizeX - 100)
+			m_bMoveBack = false;
+	}
+	else
+	{
+		Move(-50, 0, deltaTime);
+		if (m_vCenterPos.x < ScreenSizeX - 300)
+			m_bMoveBack = true;
+	}
+
+	if (m_bMoveUp)
+	{
+		Move(0, -100, deltaTime);
+		if (m_vCenterPos.y < 100)
+			m_bMoveUp = false;
+	}
+	else
+	{
+		Move(0, 100, deltaTime);
+		if (m_vCenterPos.y > ScreenSizeY - 100)
+			m_bMoveUp = true;
+	}
 
 	if (m_ariveTime > 1.0f && m_ShootTimer > 0.2f)
 	{
-		ShootBullet(true);
+		if (m_attackCount > 10)
+		{
+			ShootBullet(false, 12, 0, 360.0f / 12.0f);
+			m_specialCount++;
+			if (m_specialCount > 3)
+			{
+				m_attackCount = 0;
+				m_specialCount = 0;
+			}
+		}
+		else
+		{
+			ShootBullet(true);
+			m_attackCount++;
+		}
 		m_ShootTimer = 0;
 	}
 }

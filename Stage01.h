@@ -13,6 +13,7 @@ public:
 	void Draw();
 
 private:
+
 	Texture m_tPlayer;
 	Texture m_tFire_Small;
 	Texture m_tFire_Big;

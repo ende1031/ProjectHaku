@@ -379,9 +379,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Bar.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss01.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="MBulletEffect.cpp" />
     <ClCompile Include="MonsterBullet.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -395,6 +397,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Stage01.cpp" />
+    <ClCompile Include="StageClear.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleBackWhite.cpp" />
     <ClCompile Include="TitleHaku.cpp" />
@@ -407,9 +410,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Bar.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss01.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="MBulletEffect.h" />
     <ClInclude Include="MonsterBullet.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stage.h" />
@@ -424,6 +429,7 @@
     <ClInclude Include="MainMenu.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Stage01.h" />
+    <ClInclude Include="StageClear.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleBackWhite.h" />
     <ClInclude Include="TitleHaku.h" />
