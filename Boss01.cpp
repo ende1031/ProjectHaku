@@ -74,11 +74,6 @@ void Boss01::Update(float deltaTime)
 
 void Boss01::Phase01(float deltaTime)
 {
-	/*
-	if (m_vPos.x + m_width / 2 > 700)
-		Move(-200, 0, deltaTime);
-		*/
-
 	if (m_bMoveBack)
 	{
 		Move(50, 0, deltaTime);

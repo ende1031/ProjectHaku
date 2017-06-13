@@ -23,6 +23,9 @@
     <Filter Include="Source Files\Object\Title">
       <UniqueIdentifier>{19512f66-4d59-4879-a5a3-4c834bf451e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Object\Monster">
+      <UniqueIdentifier>{7e2002d3-79ee-46db-a654-13d1c247aa33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -81,9 +84,6 @@
     <ClInclude Include="TitleMenuArrow.h">
       <Filter>Source Files\Object\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Source Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Stage01.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
@@ -94,12 +94,6 @@
       <Filter>Source Files\Main</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
-      <Filter>Source Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss01.h">
-      <Filter>Source Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="MonsterBullet.h">
@@ -128,6 +122,33 @@
     </ClInclude>
     <ClInclude Include="Stage05.h">
       <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectStage.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss01.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss02.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss03.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss04.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss05.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelector.h">
+      <Filter>Source Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,9 +197,6 @@
     <ClCompile Include="TitleMenuArrow.cpp">
       <Filter>Source Files\Object\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Stage01.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
@@ -189,12 +207,6 @@
       <Filter>Source Files\Main</Filter>
     </ClCompile>
     <ClCompile Include="Effect.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Boss01.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Boss.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="MonsterBullet.cpp">
@@ -223,6 +235,33 @@
     </ClCompile>
     <ClCompile Include="Stage05.cpp">
       <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectStage.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss01.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss02.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss03.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss04.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss05.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelector.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

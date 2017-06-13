@@ -382,10 +382,15 @@
     <ClCompile Include="Bar.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss01.cpp" />
+    <ClCompile Include="Boss02.cpp" />
+    <ClCompile Include="Boss03.cpp" />
+    <ClCompile Include="Boss04.cpp" />
+    <ClCompile Include="Boss05.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="HowToPlay.cpp" />
     <ClCompile Include="MBulletEffect.cpp" />
     <ClCompile Include="MonsterBullet.cpp" />
+    <ClCompile Include="SelectStage.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Fire.cpp" />
@@ -403,6 +408,7 @@
     <ClCompile Include="Stage04.cpp" />
     <ClCompile Include="Stage05.cpp" />
     <ClCompile Include="StageClear.cpp" />
+    <ClCompile Include="StageSelector.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleBackWhite.cpp" />
     <ClCompile Include="TitleHaku.cpp" />
@@ -418,10 +424,15 @@
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss01.h" />
+    <ClInclude Include="Boss02.h" />
+    <ClInclude Include="Boss03.h" />
+    <ClInclude Include="Boss04.h" />
+    <ClInclude Include="Boss05.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="HowToPlay.h" />
     <ClInclude Include="MBulletEffect.h" />
     <ClInclude Include="MonsterBullet.h" />
+    <ClInclude Include="SelectStage.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Fire.h" />
@@ -440,6 +451,7 @@
     <ClInclude Include="Stage04.h" />
     <ClInclude Include="Stage05.h" />
     <ClInclude Include="StageClear.h" />
+    <ClInclude Include="StageSelector.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleBackWhite.h" />
     <ClInclude Include="TitleHaku.h" />

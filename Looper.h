@@ -4,6 +4,7 @@
 //각 스테이지별 헤더파일 여기에 추가
 #include "MainMenu.h"
 #include "HowToPlay.h"
+#include "SelectStage.h"
 #include "Stage01.h"
 #include "Stage02.h"
 #include "Stage03.h"

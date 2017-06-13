@@ -61,6 +61,9 @@ void Looper::SetScene(int Scene)
 	case sHowToPlay:
 		m_pScene = new HowToPlay;
 		break;
+	case sSelectStage:
+		m_pScene = new SelectStage;
+		break;
 	case sStage1:
 		m_pScene = new Stage01;
 		break;

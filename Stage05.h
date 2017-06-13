@@ -1,6 +1,6 @@
 #pragma once
 #include "Stage.h"
-#include "Boss01.h"
+#include "Boss05.h"
 
 class Stage05 : public Stage
 {
@@ -22,8 +22,6 @@ private:
 	Texture m_tMonster02;
 	Texture m_tMonster03;
 	Texture m_tBoss;
-
-	Boss01 m_Boss01;
 
 	BackGround m_BackGround01;
 	BackGround m_BackGround02;

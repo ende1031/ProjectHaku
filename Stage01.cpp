@@ -154,7 +154,7 @@ void Stage01::Update(float deltaTime)
 			m_StageClear.Update(deltaTime);
 			if (KeyInput(VK_RETURN) || KeyInput(VK_SPACE))
 			{
-				ChangeScene(sMainMenu);
+				ChangeScene(sStage2);
 			}
 		}
 	}

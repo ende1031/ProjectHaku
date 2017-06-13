@@ -66,7 +66,7 @@ void Stage05::Start(Sound* sound)
 
 	LoadMonsters("Data/Stage05Monsters.txt");
 
-	m_pBoss = new Boss01;
+	m_pBoss = new Boss05;
 }
 
 void Stage05::Update(float deltaTime)
@@ -85,7 +85,7 @@ void Stage05::Update(float deltaTime)
 			m_Fire[i].Update(deltaTime);
 
 		if (m_bAppearBoss)
-			dynamic_cast<Boss01*>(m_pBoss)->Update(deltaTime);
+			dynamic_cast<Boss05*>(m_pBoss)->Update(deltaTime);
 
 		UpdateMonster(deltaTime); //몬스터 전체 Update
 		UpdateBullet(deltaTime);
@@ -103,7 +103,7 @@ void Stage05::Update(float deltaTime)
 			switch (m_MonsterFileData[m_MonsterCounter].type)
 			{
 			case 0: //보스
-				dynamic_cast<Boss01*>(m_pBoss)->Start(m_tBoss, m_pSound);
+				dynamic_cast<Boss05*>(m_pBoss)->Start(m_tBoss, m_pSound);
 				m_bAppearBoss = true;
 				break;
 			case 1:
@@ -169,7 +169,7 @@ void Stage05::Draw()
 	DrawMonster(); //몬스터 전체 Draw
 
 	if (m_bAppearBoss)
-		dynamic_cast<Boss01*>(m_pBoss)->Draw();
+		dynamic_cast<Boss05*>(m_pBoss)->Draw();
 
 	if (m_Player.GetFireCount() > 0)
 	{
