@@ -33,7 +33,8 @@ using namespace std;
 enum StageName
 {
 	sMainMenu, // = 0,
-	sTestStage,
+	sHowToPlay,
+	sSelectStage,
 	sStage1,
 	sStage2,
 	sStage3,

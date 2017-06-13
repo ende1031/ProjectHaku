@@ -3,6 +3,7 @@
 
 //각 스테이지별 헤더파일 여기에 추가
 #include "MainMenu.h"
+#include "HowToPlay.h"
 #include "Stage01.h"
 
 class Looper

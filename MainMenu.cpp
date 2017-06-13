@@ -52,17 +52,18 @@ void MainMenu::Update(float deltaTime)
 	m_Light.Update(deltaTime);
 
 	//엔터를 누르면 스테이지 변경
-	if (KeyInput(VK_RETURN)) //KeyDown이 아니라 KeyInput인게 중요.
+	if (KeyInput(VK_RETURN) || KeyInput(VK_SPACE)) //KeyDown이 아니라 KeyInput인게 중요.
 	{
 		switch (m_Menu.GetMenuNum())
 		{
 		case 0: //게임 시작
-			ChangeScene(sTestStage);
+			ChangeScene(sStage1);
 			break;
 		case 1: //게임 종료
 			PostQuitMessage(0);
 			break;
 		case 2: //조작 방법
+			ChangeScene(sHowToPlay);
 			break;
 		}
 	}

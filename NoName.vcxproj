@@ -383,6 +383,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss01.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="HowToPlay.cpp" />
     <ClCompile Include="MBulletEffect.cpp" />
     <ClCompile Include="MonsterBullet.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -414,6 +415,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss01.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="HowToPlay.h" />
     <ClInclude Include="MBulletEffect.h" />
     <ClInclude Include="MonsterBullet.h" />
     <ClInclude Include="Sound.h" />

@@ -114,6 +114,9 @@
     <ClInclude Include="StageClear.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="HowToPlay.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="StageClear.cpp">
       <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToPlay.cpp">
+      <Filter>Source Files\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

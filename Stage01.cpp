@@ -100,12 +100,9 @@ void Stage01::Update(float deltaTime)
 		if (m_SceneTime > m_MonsterFileData[m_MonsterCounter].time && m_MonsterDataLine > m_MonsterCounter)
 		{
 			D3DXVECTOR3 temppos = { 800,250,0 };
-			//AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, temppos, m_Player.GetvCenterPos()));
-			//AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, temppos, 180));
 			switch (m_MonsterFileData[m_MonsterCounter].type)
 			{
 			case 0: //º¸½º
-				//AddMonster(new Boss01(m_tBoss, m_pSound, 0, m_MonsterData01, 1));
 				dynamic_cast<Boss01*>(m_pBoss)->Start(m_tBoss, m_pSound);
 				m_bAppearBoss = true;
 				break;
@@ -136,7 +133,7 @@ void Stage01::Update(float deltaTime)
 			m_bGameOverSE = true;
 		}
 		m_GameOver.Update(deltaTime);
-		if (KeyInput(VK_RETURN))
+		if (KeyInput(VK_RETURN) || KeyInput(VK_SPACE))
 		{
 			ChangeScene(sMainMenu);
 		}
@@ -155,7 +152,7 @@ void Stage01::Update(float deltaTime)
 				m_Player.SetCanInput(false);
 			}
 			m_StageClear.Update(deltaTime);
-			if (KeyInput(VK_RETURN))
+			if (KeyInput(VK_RETURN) || KeyInput(VK_SPACE))
 			{
 				ChangeScene(sMainMenu);
 			}
