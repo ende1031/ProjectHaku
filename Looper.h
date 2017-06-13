@@ -5,6 +5,10 @@
 #include "MainMenu.h"
 #include "HowToPlay.h"
 #include "Stage01.h"
+#include "Stage02.h"
+#include "Stage03.h"
+#include "Stage04.h"
+#include "Stage05.h"
 
 class Looper
 {

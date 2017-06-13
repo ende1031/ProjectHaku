@@ -57,7 +57,7 @@ void MainMenu::Update(float deltaTime)
 		switch (m_Menu.GetMenuNum())
 		{
 		case 0: //게임 시작
-			ChangeScene(sStage1);
+			ChangeScene(sStage5);
 			break;
 		case 1: //게임 종료
 			PostQuitMessage(0);

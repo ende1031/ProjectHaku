@@ -117,6 +117,18 @@
     <ClInclude Include="HowToPlay.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Stage02.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage03.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage04.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage05.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -198,6 +210,18 @@
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="HowToPlay.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage02.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage03.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage04.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage05.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
   </ItemGroup>

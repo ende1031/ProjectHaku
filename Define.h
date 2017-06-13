@@ -30,6 +30,7 @@ using namespace std;
 #define ScreenSizeX 960
 #define ScreenSizeY 540
 
+//스테이지 이름
 enum StageName
 {
 	sMainMenu, // = 0,

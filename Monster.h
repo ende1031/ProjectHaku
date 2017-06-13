@@ -5,8 +5,6 @@ class MonsterData
 {
 public:
 	float radius;
-	float rectRight;
-	float rectBottom;
 	int rowNum;
 	int lastNum;
 	int maxHP;

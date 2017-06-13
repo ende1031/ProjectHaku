@@ -14,7 +14,7 @@ Device::~Device()
 
 HRESULT Device::Start(HWND hWnd, UINT Width, UINT Height)
 {
-	// Start의 인자를 클래스 내의 인자로 복사한다.
+	// Start의 인자를 클래스 내의 인자로 복사
 	m_hWnd = hWnd;
 	m_Width = Width;
 	m_Height = Height;
@@ -29,7 +29,7 @@ HRESULT Device::Start(HWND hWnd, UINT Width, UINT Height)
 		m_hWnd, true, TRUE, D3DFMT_D24S8, 0,
 		D3DPRESENT_RATE_DEFAULT, D3DPRESENT_INTERVAL_DEFAULT };
 
-	/// 디바이스 생성
+	// 디바이스 생성
 	if (FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, m_hWnd,
 		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&d3dpp, &m_pd3dDevice)))

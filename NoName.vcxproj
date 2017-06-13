@@ -398,6 +398,10 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Stage01.cpp" />
+    <ClCompile Include="Stage02.cpp" />
+    <ClCompile Include="Stage03.cpp" />
+    <ClCompile Include="Stage04.cpp" />
+    <ClCompile Include="Stage05.cpp" />
     <ClCompile Include="StageClear.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleBackWhite.cpp" />
@@ -431,6 +435,10 @@
     <ClInclude Include="MainMenu.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Stage01.h" />
+    <ClInclude Include="Stage02.h" />
+    <ClInclude Include="Stage03.h" />
+    <ClInclude Include="Stage04.h" />
+    <ClInclude Include="Stage05.h" />
     <ClInclude Include="StageClear.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleBackWhite.h" />

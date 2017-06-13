@@ -29,7 +29,8 @@ void Monster::Start(Texture texture, Sound* sound, int pattern, MonsterData data
 
 	m_alpha = 0;
 	m_color = D3DCOLOR_ARGB(m_alpha, 255, 255, 255);
-	m_rect = { 0, 0, (LONG)m_MonsterData.rectRight, (LONG)m_MonsterData.rectBottom };
+	m_rect = { 0, 0, (LONG)texture.GetWidth() / m_MonsterData.rowNum, (LONG)texture.GetHeight() / ((m_MonsterData.lastNum - 1) / m_MonsterData.rowNum + 1) };
+
 	m_width = (float)m_rect.right;
 	m_height = (float)m_rect.bottom;
 

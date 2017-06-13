@@ -13,16 +13,16 @@ void Looper::Start()
 {
 	m_Sound.Start(); //사운드엔진 초기화
 
-	SetScene(sMainMenu);//게임을 처음 시작하면 메인메뉴 초기화
+	SetScene(sMainMenu);//게임을 처음 시작하면 메인메뉴로 씬 설정
 }
 
 void Looper::Update(float deltaTime)
 {
-	if (m_pScene->GetChangeScene() == false)
+	if (m_pScene->GetChangeScene() == false) //씬 변경이 없을 경우
 	{
-		m_pScene->Update(deltaTime);
+		m_pScene->Update(deltaTime); //씬 업데이트
 	}
-	else
+	else //씬 변경
 	{
 		SetScene(m_pScene->GetNextScene());
 	}
@@ -39,6 +39,7 @@ void Looper::Render()
 
 	if (SUCCEEDED(Device::GetDevice()->BeginScene())) // 렌더링 시작
 	{
+		//씬 그리기
 		m_pScene->Draw();
 		Device::GetDevice()->EndScene(); // 렌더링 끝
 	}
@@ -49,10 +50,9 @@ void Looper::Render()
 
 void Looper::SetScene(int Scene)
 {
-	//스테이지 변경
+	//씬 변경
 	m_iScene = Scene;
 
-	//스테이지 초기화
 	switch (m_iScene)
 	{
 	case sMainMenu:
@@ -65,8 +65,19 @@ void Looper::SetScene(int Scene)
 		m_pScene = new Stage01;
 		break;
 	case sStage2:
-		//
+		m_pScene = new Stage02;
+		break;
+	case sStage3:
+		m_pScene = new Stage03;
+		break;
+	case sStage4:
+		m_pScene = new Stage04;
+		break;
+	case sStage5:
+		m_pScene = new Stage05;
 		break;
 	}
+
+	//씬 초기화
 	m_pScene->Start(&m_Sound);
 }

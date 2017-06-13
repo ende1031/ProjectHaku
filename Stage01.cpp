@@ -2,7 +2,7 @@
 
 Stage01::Stage01()
 {
-	cout << "스테이지1이 로드되었습니다." << endl;
+	cout << "스테이지1에 입장했습니다." << endl;
 }
 
 Stage01::~Stage01()
@@ -59,10 +59,10 @@ void Stage01::Start(Sound* sound)
 	m_tStageClearLight.Start(L"Image/ClearLight.png");
 	m_StageClear.Start(m_tStageClear, m_tStageClearLight);
 
-	//pattern, radius, rectRight, rectBottom, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
-	m_MonsterData01 = { 35.0f, 65.0f, 97.0f, 2, 2, 4, 0.5f, 10.0f };
-	m_MonsterData02 = { 35.0f, 65.0f, 97.0f, 2, 2, 4, 0.5f, 10.0f };
-	m_MonsterData03 = { 40.0f, 97.0f, 93.0f, 6, 6, 4, 0.5f, 10.0f };
+	//radius, rowNum, lastNum, maxHP, attackSpeed, moveSpeed
+	m_MonsterData01 = { 35.0f, 2, 2, 4, 0.5f, 10.0f };
+	m_MonsterData02 = { 35.0f, 2, 2, 4, 0.5f, 10.0f };
+	m_MonsterData03 = { 40.0f, 6, 6, 4, 0.5f, 10.0f };
 
 	LoadMonsters("Data/Stage01Monsters.txt");
 
