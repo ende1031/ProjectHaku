@@ -21,7 +21,7 @@ void Stage05::Start(Sound* sound)
 
 	m_pSound = sound;
 	m_pSound->Stop();
-	m_pSound->PlayBGM("Sound/Stage01.mp3");
+	m_pSound->PlayBGM("Sound/Stage05.mp3");
 
 	m_tBackGround01.Start(L"Image/Stage05/BackGround01.png");
 	m_tBackGround02.Start(L"Image/Stage05/BackGround02.png");

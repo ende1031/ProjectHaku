@@ -408,6 +408,7 @@
     <ClCompile Include="Stage04.cpp" />
     <ClCompile Include="Stage05.cpp" />
     <ClCompile Include="StageClear.cpp" />
+    <ClCompile Include="StageSelectArrow.cpp" />
     <ClCompile Include="StageSelector.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleBackWhite.cpp" />
@@ -451,6 +452,7 @@
     <ClInclude Include="Stage04.h" />
     <ClInclude Include="Stage05.h" />
     <ClInclude Include="StageClear.h" />
+    <ClInclude Include="StageSelectArrow.h" />
     <ClInclude Include="StageSelector.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TitleBackWhite.h" />

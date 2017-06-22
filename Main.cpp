@@ -19,8 +19,8 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) // 윈
 INT WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, INT) // 프로그램 진입점
 {
 	//콘솔창 띄우기
-	AllocConsole();
-	freopen("CONOUT$", "wt", stdout);
+	//AllocConsole();
+	//freopen("CONOUT$", "wt", stdout);
 
 	Looper Looper;
 

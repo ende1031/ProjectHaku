@@ -14,8 +14,15 @@ private:
 	void Phase01(float deltaTime);
 	int m_attackCount;
 	int m_specialCount;
+	float m_specialStartAngle;
 
+	bool m_bMove;
 	bool m_bMoveBack;
 	bool m_bMoveUp;
+	float m_MoveSpeed;
+	bool m_bAttackOn;
+
+	int m_pattern;
+
 };
 

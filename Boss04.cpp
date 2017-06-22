@@ -17,7 +17,7 @@ void Boss04::Start(Texture texture, Sound* sound)
 	m_pTexture = texture.GetTexture();
 	m_pSound = sound;
 	m_pSound->Stop();
-	m_pSound->PlayBGM("Sound/Boss01.mp3");
+	m_pSound->PlayBGM("Sound/Boss04.mp3");
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -37,7 +37,7 @@ void Boss04::Start(Texture texture, Sound* sound)
 	m_vPos = D3DXVECTOR3(900 - m_width / 2, 270 - m_height / 2, 0);
 	m_vCenterPos = D3DXVECTOR3(m_vPos.x + 80.f, m_vPos.y + 61.f, 0);
 
-	m_MaxHP = 100;
+	m_MaxHP = 250;
 	m_HP = m_MaxHP;
 	m_Phase = 0;
 
@@ -76,26 +76,26 @@ void Boss04::Phase01(float deltaTime)
 {
 	if (m_bMoveBack)
 	{
-		Move(50, 0, deltaTime);
+		Move(70, 0, deltaTime);
 		if (m_vCenterPos.x > ScreenSizeX - 100)
 			m_bMoveBack = false;
 	}
 	else
 	{
-		Move(-50, 0, deltaTime);
+		Move(-70, 0, deltaTime);
 		if (m_vCenterPos.x < ScreenSizeX - 300)
 			m_bMoveBack = true;
 	}
 
 	if (m_bMoveUp)
 	{
-		Move(0, -100, deltaTime);
+		Move(0, -200, deltaTime);
 		if (m_vCenterPos.y < 100)
 			m_bMoveUp = false;
 	}
 	else
 	{
-		Move(0, 100, deltaTime);
+		Move(0, 200, deltaTime);
 		if (m_vCenterPos.y > ScreenSizeY - 100)
 			m_bMoveUp = true;
 	}
@@ -104,9 +104,9 @@ void Boss04::Phase01(float deltaTime)
 	{
 		if (m_attackCount > 10)
 		{
-			ShootBullet(false, 12, 0, 360.0f / 12.0f);
+			ShootBullet(false, 30, m_specialCount * 6, 360.0f / 30.0f);
 			m_specialCount++;
-			if (m_specialCount > 3)
+			if (m_specialCount > 1)
 			{
 				m_attackCount = 0;
 				m_specialCount = 0;
@@ -114,7 +114,7 @@ void Boss04::Phase01(float deltaTime)
 		}
 		else
 		{
-			ShootBullet(true);
+			ShootBullet(false, 2, 175.0f, 10.0f);
 			m_attackCount++;
 		}
 		m_ShootTimer = 0;

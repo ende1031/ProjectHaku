@@ -29,19 +29,22 @@ void SelectStage::Start(Sound* sound)
 	m_tSS3.Start(L"Image/SelectStage/Stage3.png");
 	m_tSS4.Start(L"Image/SelectStage/Stage4.png");
 	m_tSS5.Start(L"Image/SelectStage/Stage5.png");
+	m_tKey.Start(L"Image/SelectStage/key.png");
 
 	//오브젝트 초기화
 	m_Title.Start(m_tTitle);
 	m_StageSelector.Start(m_tSSBG1, m_tSSBG2, m_tSSBG3, m_tSSBG4, m_tSSBG5,
 		m_tSS1, m_tSS2, m_tSS3, m_tSS4, m_tSS5, m_pSound);
+	m_Key.Start(m_tKey);
 
-	m_pSound->PlayBGM("Sound/Title.mp3");
+	m_pSound->PlayBGM("Sound/SelectStage.mp3");
 }
 
 void SelectStage::Update(float deltaTime)
 {
 	m_Title.Update(deltaTime);
 	m_StageSelector.Update(deltaTime);
+	m_Key.Update(deltaTime);
 
 	if (KeyInput(VK_RETURN) || KeyInput(VK_SPACE))
 	{
@@ -78,4 +81,5 @@ void SelectStage::Draw()
 {
 	m_StageSelector.Draw();
 	m_Title.Draw();
+	m_Key.Draw();
 }

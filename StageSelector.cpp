@@ -41,6 +41,9 @@ void StageSelector::Start(Texture bg1, Texture bg2, Texture bg3, Texture bg4, Te
 	for (int i = 0; i < 5; i++)
 	{
 		m_vStagePos[i] = D3DXVECTOR3(i * 660, 0, 0);
+
+		m_BGAlpha[i] = 0;
+		m_BGColor[i] = D3DCOLOR_ARGB(m_BGAlpha[i], 255, 255, 255);
 	}
 
 	m_StageNum = 1;
@@ -69,6 +72,21 @@ void StageSelector::Update(float deltaTime)
 	{
 		m_bMove = false;
 	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (i < m_StageNum)
+		{
+			AlphaUp(&m_BGColor[i], &m_BGAlpha[i], deltaTime);
+			//stagenum == 2
+			//0,1 up
+			//2,3,4 down
+		}
+		else
+		{
+			AlphaDown(&m_BGColor[i], &m_BGAlpha[i], deltaTime);
+		}
+	}
 }
 
 void StageSelector::Input()
@@ -90,9 +108,12 @@ void StageSelector::Draw()
 	if (m_bActive)
 	{
 		//배경 그리기
-		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
-		m_pSprite->Draw(m_pBGTexture[0], &m_rect, NULL, &m_vPos, m_color);
-		m_pSprite->End();
+		for (int i = 0; i < 5; i++)
+		{
+			m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
+			m_pSprite->Draw(m_pBGTexture[i], &m_rect, NULL, &m_vPos, m_BGColor[i]);
+			m_pSprite->End();
+		}
 
 		//스테이지 오브젝트 그리기
 		for (int i = 0; i < 5; i++)
@@ -102,4 +123,26 @@ void StageSelector::Draw()
 			m_pSprite->End();
 		}
 	}
+}
+
+void StageSelector::AlphaUp(D3DCOLOR *color, unsigned int *alpha, float deltaTime)
+{
+	if (*alpha < 255)
+		(*alpha) += 10;
+
+	if (*alpha >= 255)
+		*alpha = 255;
+
+	*color = D3DCOLOR_ARGB(*alpha, 255, 255, 255);
+}
+
+void StageSelector::AlphaDown(D3DCOLOR *color, unsigned int *alpha, float deltaTime)
+{
+	if (*alpha > 20)
+		(*alpha) -= 10;
+
+	if (*alpha <= 5)
+		*alpha = 0;
+
+	*color = D3DCOLOR_ARGB(*alpha, 255, 255, 255);
 }

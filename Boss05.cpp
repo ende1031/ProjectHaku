@@ -17,7 +17,7 @@ void Boss05::Start(Texture texture, Sound* sound)
 	m_pTexture = texture.GetTexture();
 	m_pSound = sound;
 	m_pSound->Stop();
-	m_pSound->PlayBGM("Sound/Boss01.mp3");
+	m_pSound->PlayBGM("Sound/Boss05.mp3");
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -37,7 +37,7 @@ void Boss05::Start(Texture texture, Sound* sound)
 	m_vPos = D3DXVECTOR3(900 - m_width / 2, 270 - m_height / 2, 0);
 	m_vCenterPos = D3DXVECTOR3(m_vPos.x + 89.f, m_vPos.y + 192.f, 0);
 
-	m_MaxHP = 100;
+	m_MaxHP = 300;
 	m_HP = m_MaxHP;
 	m_Phase = 0;
 
@@ -46,6 +46,12 @@ void Boss05::Start(Texture texture, Sound* sound)
 
 	m_bMoveBack = false;
 	m_bMoveUp = false;
+	m_bMove = true;
+	m_pattern = 0;
+	m_bAttackOn = true;
+	m_specialStartAngle = 0;
+
+	m_MoveSpeed = 300;
 }
 
 void Boss05::Update(float deltaTime)
@@ -74,49 +80,69 @@ void Boss05::Update(float deltaTime)
 
 void Boss05::Phase01(float deltaTime)
 {
-	if (m_bMoveBack)
+	if (m_bMove)
 	{
-		Move(50, 0, deltaTime);
-		if (m_vCenterPos.x > ScreenSizeX - 100)
-			m_bMoveBack = false;
-	}
-	else
-	{
-		Move(-50, 0, deltaTime);
-		if (m_vCenterPos.x < ScreenSizeX - 300)
-			m_bMoveBack = true;
-	}
-
-	if (m_bMoveUp)
-	{
-		Move(0, -100, deltaTime);
-		if (m_vCenterPos.y < 100)
-			m_bMoveUp = false;
-	}
-	else
-	{
-		Move(0, 100, deltaTime);
-		if (m_vCenterPos.y > ScreenSizeY - 100)
-			m_bMoveUp = true;
-	}
-
-	if (m_ariveTime > 1.0f && m_ShootTimer > 0.2f)
-	{
-		if (m_attackCount > 10)
+		if (m_bMoveBack)
 		{
-			ShootBullet(false, 12, 0, 360.0f / 12.0f);
-			m_specialCount++;
-			if (m_specialCount > 3)
-			{
-				m_attackCount = 0;
-				m_specialCount = 0;
-			}
+			Move(50, 0, deltaTime);
+			if (m_vCenterPos.x > ScreenSizeX - 100)
+				m_bMoveBack = false;
 		}
 		else
 		{
-			ShootBullet(true);
-			m_attackCount++;
+			Move(-50, 0, deltaTime);
+			if (m_vCenterPos.x < ScreenSizeX - 300)
+				m_bMoveBack = true;
 		}
+
+		if (m_bMoveUp)
+		{
+			Move(0, -m_MoveSpeed, deltaTime);
+			if (m_vCenterPos.y < 100)
+				m_bMoveUp = false;
+		}
+		else
+		{
+			Move(0, m_MoveSpeed, deltaTime);
+			if (m_vCenterPos.y > ScreenSizeY - 100)
+				m_bMoveUp = true;
+		}
+	}
+	if (m_ariveTime > 0.5f && m_ShootTimer > 0.1f)
+	{
+		if (m_attackCount < 20) //패턴1
+		{
+			m_bMove = true;
+			m_MoveSpeed = 300.0f;
+
+			if (m_bAttackOn)
+			{
+				ShootBullet(false, 3, 170.0f, 10.0f);
+				m_bAttackOn = false;
+			}
+			else
+				m_bAttackOn = true;
+		}
+		else if (m_attackCount >= 20 && m_attackCount < 40) //패턴2
+		{
+			m_MoveSpeed = 50.0f;
+			m_bMove = true;
+
+			ShootBullet(false, 4, m_specialStartAngle, 360.0f / 4.0f);
+			m_specialCount++;
+			m_specialStartAngle += 10.0f;
+			if (m_specialStartAngle >= 360.0f)
+				m_specialStartAngle -= 360.0f;
+		}
+		else if (m_attackCount >= 40 && m_attackCount < 43) //패턴3
+		{
+			m_bMove = false;
+			ShootBullet(false, 50, 0, 360.0f / 50.0f);
+		}
+		else
+			m_attackCount = 0;
+
+		m_attackCount++;
 		m_ShootTimer = 0;
 	}
 }

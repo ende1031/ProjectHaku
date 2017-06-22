@@ -15,7 +15,10 @@ private:
 	int m_attackCount;
 	int m_specialCount;
 
+	bool m_bMove;
 	bool m_bMoveBack;
 	bool m_bMoveUp;
+
+	bool m_bNormalAttackOn;
 };
 

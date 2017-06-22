@@ -265,7 +265,7 @@ void Stage::CheckMonsterShoot()
 		{
 			for (int i = 0; i < m_pBoss->GetBulletData().count; i++)
 			{
-			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_pBoss->GetBulletData().angle + m_pBoss->GetBulletData().angle * i));
+			AddBullet(new MonsterBullet(m_tMonsterBullet, m_pSound, m_pBoss->GetvCenterPos(), m_pBoss->GetBulletData().startAngle + m_pBoss->GetBulletData().angle * i));
 			}
 		}
 	}

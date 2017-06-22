@@ -109,7 +109,7 @@ void Object::Animation(int rowNum, int lastNum, float delayTime, float deltaTime
 void Object::FadeIn(unsigned int *alpha, float deltaTime)
 {
 	if (*alpha < 255)
-		(*alpha) += (unsigned int)(700 * deltaTime);
+		(*alpha) += (unsigned int)(20);
 
 	if (*alpha >= 255)
 		*alpha = 255;

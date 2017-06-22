@@ -17,7 +17,7 @@ void Boss03::Start(Texture texture, Sound* sound)
 	m_pTexture = texture.GetTexture();
 	m_pSound = sound;
 	m_pSound->Stop();
-	m_pSound->PlayBGM("Sound/Boss01.mp3");
+	m_pSound->PlayBGM("Sound/Boss03.mp3");
 
 	m_AniTimer = 0;
 	m_AniNum = 0;
@@ -37,15 +37,17 @@ void Boss03::Start(Texture texture, Sound* sound)
 	m_vPos = D3DXVECTOR3(900 - m_width / 2, 270 - m_height / 2, 0);
 	m_vCenterPos = D3DXVECTOR3(m_vPos.x + 45.f, m_vPos.y + 115.f, 0);
 
-	m_MaxHP = 100;
+	m_MaxHP = 200;
 	m_HP = m_MaxHP;
 	m_Phase = 0;
 
-	m_attackCount = 0;
+	m_attackCount = 10;
 	m_specialCount = 0;
 
 	m_bMoveBack = false;
 	m_bMoveUp = false;
+	m_bMove = true;
+	m_bNormalAttackOn = true;
 }
 
 void Boss03::Update(float deltaTime)
@@ -74,47 +76,58 @@ void Boss03::Update(float deltaTime)
 
 void Boss03::Phase01(float deltaTime)
 {
-	if (m_bMoveBack)
+	if (m_bMove)
 	{
-		Move(50, 0, deltaTime);
-		if (m_vCenterPos.x > ScreenSizeX - 100)
-			m_bMoveBack = false;
-	}
-	else
-	{
-		Move(-50, 0, deltaTime);
-		if (m_vCenterPos.x < ScreenSizeX - 300)
-			m_bMoveBack = true;
-	}
-
-	if (m_bMoveUp)
-	{
-		Move(0, -100, deltaTime);
-		if (m_vCenterPos.y < 100)
-			m_bMoveUp = false;
-	}
-	else
-	{
-		Move(0, 100, deltaTime);
-		if (m_vCenterPos.y > ScreenSizeY - 100)
-			m_bMoveUp = true;
-	}
-
-	if (m_ariveTime > 1.0f && m_ShootTimer > 0.2f)
-	{
-		if (m_attackCount > 10)
+		if (m_bMoveBack)
 		{
+			Move(50, 0, deltaTime);
+			if (m_vCenterPos.x > ScreenSizeX - 100)
+				m_bMoveBack = false;
+		}
+		else
+		{
+			Move(-50, 0, deltaTime);
+			if (m_vCenterPos.x < ScreenSizeX - 300)
+				m_bMoveBack = true;
+		}
+
+		if (m_bMoveUp)
+		{
+			Move(0, -200, deltaTime);
+			if (m_vCenterPos.y < 100)
+				m_bMoveUp = false;
+		}
+		else
+		{
+			Move(0, 200, deltaTime);
+			if (m_vCenterPos.y > ScreenSizeY - 100)
+				m_bMoveUp = true;
+		}
+	}
+
+	if (m_ariveTime > 1.0f && m_ShootTimer > 0.05f)
+	{
+		if (m_attackCount > 15)
+		{
+			m_bMove = false;
 			ShootBullet(false, 12, 0, 360.0f / 12.0f);
 			m_specialCount++;
-			if (m_specialCount > 3)
+			if (m_specialCount > 5)
 			{
+				m_bMove = true;
 				m_attackCount = 0;
 				m_specialCount = 0;
 			}
 		}
 		else
 		{
-			ShootBullet(true);
+			if (m_bNormalAttackOn)
+			{
+				ShootBullet(true);
+				m_bNormalAttackOn = false;
+			}
+			else
+				m_bNormalAttackOn = true;
 			m_attackCount++;
 		}
 		m_ShootTimer = 0;

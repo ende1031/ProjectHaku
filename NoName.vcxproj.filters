@@ -150,6 +150,9 @@
     <ClInclude Include="StageSelector.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="StageSelectArrow.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -261,6 +264,9 @@
       <Filter>Source Files\Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="StageSelector.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectArrow.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>

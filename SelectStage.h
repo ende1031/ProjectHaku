@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Object.h"
 #include "StageSelector.h"
+#include "StageSelectArrow.h"
 
 class SelectStage : public Scene
 {
@@ -16,6 +17,9 @@ public:
 private:
 	Object m_Title;
 	Texture m_tTitle;
+
+	StageSelectArrow m_Key;
+	Texture m_tKey;
 
 	StageSelector m_StageSelector;
 	Texture m_tSSBG1;
